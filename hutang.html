@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1a3a2a" />
+  <title>WaroengPintar - Pengeluaran</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #f5f2eb;
+      --surface:   #ffffff;
+      --border:    #e2ddd5;
+      --text:      #1a1a1a;
+      --muted:     #6b6460;
+      --accent:    #1a5c38;
+      --accent2:   #e8f5ee;
+      --danger:    #c0392b;
+      --danger-bg: #fdf0ee;
+      --warning:   #b7791f;
+      --warn-bg:   #fef9ee;
+      --warn-bdr:  #f7d98c;
+      --lunas-bg:  #e8f5ee;
+      --lunas-clr: #1a5c38;
+    }
+
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    .header {
+      background: #7c4f1a;
+      color: #fff; padding: 0 1.5rem;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+    }
+    .header-inner { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-icon { width: 34px; height: 34px; background: rgba(255,255,255,.18); border-radius: 8px; display: grid; place-items: center; font-size: 18px; }
+    .brand-name { font-family: 'Syne', sans-serif; font-size: 1.15rem; letter-spacing: .5px; }
+    .page-title { font-size: .82rem; opacity: .85; font-weight: 500; }
+
+    .nav { background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
+    .nav::-webkit-scrollbar { display: none; }
+    .nav-inner { max-width: 760px; margin: 0 auto; display: flex; }
+    .nav-link { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 18px; text-decoration: none; color: var(--muted); font-size: .72rem; font-weight: 500; border-bottom: 2.5px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; }
+    .nav-link span.icon { font-size: 17px; }
+    .nav-link.active, .nav-link:hover { color: #7c4f1a; border-bottom-color: #7c4f1a; }
+
+    .main { max-width: 760px; margin: 0 auto; padding: 1.25rem 1rem 5rem; }
+
+    .section-label { font-size: .7rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: .75rem; }
+
+    /* Summary */
+    .summary-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 1.25rem; }
+    .sum-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: .85rem .9rem; }
+    .sum-card.warn { background: var(--warn-bg); border-color: var(--warn-bdr); }
+    .sum-card .sc-label { font-size: .68rem; color: var(--muted); font-weight: 500; margin-bottom: 4px; }
+    .sum-card .sc-val { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; line-height: 1.1; }
+    .sc-warn { color: var(--warning); }
+    .sc-green { color: var(--accent); }
+    .sc-red   { color: var(--danger); }
+    .sum-card .sc-sub { font-size: .65rem; color: var(--muted); margin-top: 3px; }
+
+    /* Form */
+    .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem; margin-bottom: 1.25rem; }
+    .form-card h2 { font-size: .9rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .form-row.full { grid-template-columns: 1fr; }
+    .form-row.three { grid-template-columns: 1fr 1fr 1fr; }
+    .field label { display: block; font-size: .72rem; font-weight: 600; color: var(--muted); margin-bottom: 5px; }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 9px 11px; border: 1px solid var(--border); border-radius: 9px;
+      font-size: .85rem; font-family: inherit; background: var(--bg); color: var(--text); outline: none; transition: border-color .15s;
+    }
+    .field input:focus, .field select:focus { border-color: #7c4f1a; background: #fff; }
+    .btn-submit { width: 100%; padding: 11px; background: #7c4f1a; color: #fff; border: none; border-radius: 10px; font-size: .9rem; font-weight: 700; font-family: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: opacity .15s, transform .1s; margin-top: 4px; }
+    .btn-submit:hover { opacity: .9; }
+    .btn-submit:active { transform: scale(.98); }
+
+    /* Toolbar & Filter */
+    .toolbar { display: flex; gap: 8px; margin-bottom: 1rem; }
+    .toolbar input { flex: 1; padding: 8px 12px; border: 1px solid var(--border); border-radius: 9px; font-size: .82rem; font-family: inherit; background: var(--surface); outline: none; }
+    .toolbar input:focus { border-color: #7c4f1a; }
+    .filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
+    .ftab { padding: 5px 12px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface); font-size: .73rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all .15s; }
+    .ftab.active { background: #7c4f1a; color: #fff; border-color: #7c4f1a; }
+
+    /* Hutang Card */
+    .item-list { display: flex; flex-direction: column; gap: 10px; }
+    .hutang-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      animation: fadeIn .2s ease;
+    }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+    .hutang-card.lunas { border-color: #a8d5be; background: #fafffe; }
+    .hutang-card.menipis { border-color: var(--warn-bdr); }
+
+    .hc-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: .9rem 1rem .7rem;
+    }
+    .hc-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--warn-bg); border: 2px solid var(--warn-bdr);
+      display: grid; place-items: center;
+      font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800;
+      color: var(--warning); flex-shrink: 0; text-transform: uppercase;
+    }
+    .hc-avatar.lunas { background: var(--lunas-bg); border-color: #a8d5be; color: var(--lunas-clr); }
+    .hc-info { flex: 1; min-width: 0; }
+    .hc-nama { font-weight: 700; font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hc-tgl  { font-size: .68rem; color: var(--muted); margin-top: 1px; }
+    .hc-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .hc-amount { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--warning); }
+    .hc-amount.lunas { color: var(--accent); text-decoration: line-through; opacity: .6; }
+    .status-badge {
+      font-size: .63rem; font-weight: 700; padding: 2px 8px;
+      border-radius: 99px; white-space: nowrap;
+    }
+    .badge-belum { background: var(--warn-bg); color: var(--warning); }
+    .badge-lunas { background: var(--lunas-bg); color: var(--lunas-clr); }
+
+    /* Progress sisa hutang */
+    .hc-progress { padding: 0 1rem 4px; }
+    .hc-prog-label { display: flex; justify-content: space-between; font-size: .66rem; color: var(--muted); margin-bottom: 4px; }
+    .prog-track { height: 5px; background: var(--border); border-radius: 99px; overflow: hidden; }
+    .prog-fill  { height: 100%; background: var(--warning); border-radius: 99px; transition: width .4s; }
+    .prog-fill.lunas { background: var(--accent); }
+
+    /* Riwayat bayar */
+    .hc-riwayat { padding: 0 1rem .5rem; }
+    .riwayat-toggle { font-size: .72rem; color: #7c4f1a; font-weight: 600; cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; }
+    .riwayat-list { margin-top: 6px; display: none; flex-direction: column; gap: 4px; }
+    .riwayat-list.open { display: flex; }
+    .riwayat-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 10px; background: var(--bg); border-radius: 8px; font-size: .75rem; }
+    .riwayat-row span:last-child { font-weight: 600; color: var(--accent); }
+
+    /* Actions */
+    .hc-actions { display: flex; gap: 6px; padding: .6rem 1rem .85rem; border-top: 1px solid var(--border); margin-top: .5rem; }
+    .btn-bayar {
+      flex: 1; padding: 8px; background: #7c4f1a; color: #fff;
+      border: none; border-radius: 8px; font-size: .78rem; font-weight: 700;
+      font-family: inherit; cursor: pointer; transition: opacity .15s;
+    }
+    .btn-bayar:hover { opacity: .85; }
+    .btn-bayar:disabled { opacity: .35; cursor: not-allowed; }
+    .btn-lunas {
+      flex: 1; padding: 8px; background: var(--accent2); color: var(--accent);
+      border: 1px solid #a8d5be; border-radius: 8px; font-size: .78rem; font-weight: 700;
+      font-family: inherit; cursor: pointer; transition: opacity .15s;
+    }
+    .btn-lunas:hover { opacity: .8; }
+    .btn-lunas:disabled { opacity: .35; cursor: not-allowed; }
+    .btn-hapus {
+      padding: 8px 12px; background: none; color: var(--danger);
+      border: 1px solid #f0b8b2; border-radius: 8px; font-size: .78rem; font-weight: 700;
+      font-family: inherit; cursor: pointer; transition: opacity .15s;
+    }
+    .btn-hapus:hover { background: var(--danger-bg); }
+
+    /* Empty */
+    .empty-state { text-align: center; padding: 2.5rem 1rem; color: var(--muted); }
+    .empty-state .ei { font-size: 40px; margin-bottom: .75rem; }
+    .empty-state p { font-size: .85rem; }
+
+    /* Bottom nav */
+    .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 6px 0 calc(6px + env(safe-area-inset-bottom)); z-index: 200; }
+    .bb-item { display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--muted); font-size: .62rem; font-weight: 600; padding: 4px 10px; border-radius: 8px; }
+    .bb-item span.icon { font-size: 20px; }
+    .bb-item.active, .bb-item:hover { color: var(--accent); }
+
+    /* Toast */
+    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1a; color: #fff; padding: 10px 20px; border-radius: 99px; font-size: .82rem; font-weight: 600; opacity: 0; transition: all .3s; z-index: 999; white-space: nowrap; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* Modal hapus */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none; align-items: center; justify-content: center; z-index: 500; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--surface); border-radius: 16px; padding: 1.5rem; max-width: 320px; width: 100%; }
+    .modal h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .modal p  { font-size: .83rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .modal-btns { display: flex; gap: 8px; }
+    .btn-cancel { flex: 1; padding: 9px; border: 1px solid var(--border); border-radius: 9px; background: none; font-family: inherit; font-size: .85rem; font-weight: 600; cursor: pointer; }
+    .btn-confirm-del { flex: 1; padding: 9px; border: none; border-radius: 9px; background: var(--danger); color: #fff; font-family: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; }
+
+    /* Modal Bayar */
+    .modal-bayar { background: var(--surface); border-radius: 16px; padding: 1.5rem; max-width: 340px; width: 100%; }
+    .modal-bayar h3 { font-size: 1rem; font-weight: 700; margin-bottom: .25rem; }
+    .modal-bayar .mb-sub { font-size: .78rem; color: var(--muted); margin-bottom: 1rem; }
+    .modal-bayar .mb-sisa { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--warning); margin-bottom: 1rem; }
+    .modal-bayar label { display: block; font-size: .72rem; font-weight: 600; color: var(--muted); margin-bottom: 5px; }
+    .modal-bayar input { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 9px; font-size: .95rem; font-family: inherit; background: var(--bg); outline: none; margin-bottom: 1rem; }
+    .modal-bayar input:focus { border-color: #7c4f1a; background: #fff; }
+    .modal-bayar .bayar-btns { display: flex; gap: 8px; }
+    .btn-bayar-confirm { flex: 1; padding: 10px; background: #7c4f1a; color: #fff; border: none; border-radius: 9px; font-family: inherit; font-size: .88rem; font-weight: 700; cursor: pointer; }
+    .btn-lunas-full { flex: 1; padding: 10px; background: var(--accent); color: #fff; border: none; border-radius: 9px; font-family: inherit; font-size: .88rem; font-weight: 700; cursor: pointer; }
+
+    section { margin-bottom: 1.25rem; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-icon">🏪</div>
+      <span class="brand-name">WaroengPintar</span>
+    </div>
+    <span class="page-title">📋 Hutang Pelanggan</span>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="dashboard.html" class="nav-link"><span class="icon">📊</span>Dashboard</a>
+    <a href="pemasukan.html" class="nav-link"><span class="icon">💰</span>Pemasukan</a>
+    <a href="pengeluaran.html" class="nav-link"><span class="icon">🛒</span>Pengeluaran</a>
+    <a href="hutang.html" class="nav-link active"><span class="icon">📋</span>Hutang</a>
+    <a href="stok.html" class="nav-link"><span class="icon">📦</span>Stok</a>
+  </div>
+</nav>
+
+<main class="main">
+
+  <!-- Summary -->
+  <section>
+    <div class="section-label">Ringkasan Hutang</div>
+    <div class="summary-strip">
+      <div class="sum-card warn">
+        <div class="sc-label">⏳ Belum Lunas</div>
+        <div class="sc-val sc-warn" id="sumBelum">Rp 0</div>
+        <div class="sc-sub" id="cntBelum">0 pelanggan</div>
+      </div>
+      <div class="sum-card">
+        <div class="sc-label">✅ Sudah Lunas</div>
+        <div class="sc-val sc-green" id="sumLunas">Rp 0</div>
+        <div class="sc-sub" id="cntLunas">0 pelanggan</div>
+      </div>
+      <div class="sum-card">
+        <div class="sc-label">📊 Total Hutang</div>
+        <div class="sc-val sc-red" id="sumTotal">Rp 0</div>
+        <div class="sc-sub" id="cntTotal">0 total</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Tambah -->
+  <section>
+    <div class="form-card">
+      <h2>➕ Tambah Hutang Pelanggan</h2>
+      <div class="form-row">
+        <div class="field">
+          <label>NAMA PELANGGAN *</label>
+          <input type="text" id="inpNama" placeholder="cth: Bu Sari" maxlength="50" />
+        </div>
+        <div class="field">
+          <label>JUMLAH HUTANG (Rp) *</label>
+          <input type="number" id="inpJumlah" placeholder="50000" min="0" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label>KETERANGAN</label>
+          <input type="text" id="inpKet" placeholder="cth: Beli beras + gula" maxlength="80" />
+        </div>
+        <div class="field">
+          <label>TANGGAL</label>
+          <input type="date" id="inpTgl" />
+        </div>
+      </div>
+      <button class="btn-submit" onclick="addData()">
+        <span>💾</span> Simpan Hutang
+      </button>
+    </div>
+  </section>
+
+  <!-- List -->
+  <section>
+    <div class="section-label">Daftar Hutang</div>
+    <div class="toolbar">
+      <input type="text" id="searchInput" placeholder="🔍 Cari nama pelanggan..." oninput="renderData()" />
+    </div>
+    <div class="filter-tabs">
+      <button class="ftab active" onclick="setFilter('semua', this)">Semua</button>
+      <button class="ftab" onclick="setFilter('belum', this)">⏳ Belum Lunas</button>
+      <button class="ftab" onclick="setFilter('lunas', this)">✅ Lunas</button>
+    </div>
+    <div class="item-list" id="itemList"></div>
+  </section>
+
+</main>
+
+<nav class="bottom-bar">
+  <a href="dashboard.html" class="bb-item"><span class="icon">📊</span>Dashboard</a>
+  <a href="pemasukan.html" class="bb-item"><span class="icon">💰</span>Masuk</a>
+  <a href="pengeluaran.html" class="bb-item"><span class="icon">🛒</span>Keluar</a>
+  <a href="hutang.html" class="bb-item active"><span class="icon">📋</span>Hutang</a>
+  <a href="stok.html" class="bb-item"><span class="icon">📦</span>Stok</a>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<!-- Modal Hapus -->
+<div class="modal-overlay" id="modalHapus">
+  <div class="modal">
+    <h3>🗑️ Hapus Data Hutang?</h3>
+    <p>Data hutang pelanggan ini akan dihapus permanen. Lanjutkan?</p>
+    <div class="modal-btns">
+      <button class="btn-cancel" onclick="closeHapus()">Batal</button>
+      <button class="btn-confirm-del" onclick="confirmHapus()">Hapus</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Bayar -->
+<div class="modal-overlay" id="modalBayar">
+  <div class="modal-bayar">
+    <h3>💳 Bayar Hutang</h3>
+    <div class="mb-sub" id="bayarNama">Pelanggan</div>
+    <div class="mb-sisa" id="bayarSisa">Rp 0</div>
+    <label>JUMLAH BAYAR (Rp)</label>
+    <input type="number" id="inpBayar" placeholder="Masukkan jumlah bayar..." min="1" />
+    <div class="bayar-btns">
+      <button class="btn-cancel" onclick="closeBayar()" style="flex:1;padding:10px;border:1px solid var(--border);border-radius:9px;background:none;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;">Batal</button>
+      <button class="btn-bayar-confirm" onclick="prosessBayar()">Bayar Sebagian</button>
+      <button class="btn-lunas-full" onclick="prosessLunas()">Lunas Semua</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const KEY = 'warung_hutang';
+  let currentFilter = 'semua';
+  let deleteId = null;
+  let bayarId   = null;
+
+  function getData() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+    catch { return []; }
+  }
+  function saveData(d) { localStorage.setItem(KEY, JSON.stringify(d)); }
+  function fmt(n) { return 'Rp ' + Math.abs(n).toLocaleString('id-ID'); }
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  const todayStr = new Date().toISOString().split('T')[0];
+  document.getElementById('inpTgl').value = todayStr;
+
+  function setFilter(val, el) {
+    currentFilter = val;
+    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    renderData();
+  }
+
+  // ── Add ──
+  function addData() {
+    const nama   = document.getElementById('inpNama').value.trim();
+    const jumlah = parseInt(document.getElementById('inpJumlah').value);
+    const ket    = document.getElementById('inpKet').value.trim();
+    const tgl    = document.getElementById('inpTgl').value;
+
+    if (!nama)             { showToast('⚠️ Nama pelanggan wajib diisi'); return; }
+    if (!jumlah || jumlah <= 0) { showToast('⚠️ Jumlah hutang harus lebih dari 0'); return; }
+
+    const data = getData();
+    data.unshift({
+      id: Date.now(),
+      nama,
+      jumlah,       // hutang asal
+      sisa: jumlah, // sisa yang belum dibayar
+      keterangan: ket,
+      tanggal: tgl,
+      lunas: false,
+      riwayat: []   // riwayat pembayaran
+    });
+    saveData(data);
+
+    document.getElementById('inpNama').value = '';
+    document.getElementById('inpJumlah').value = '';
+    document.getElementById('inpKet').value = '';
+    document.getElementById('inpTgl').value = todayStr;
+
+    showToast('✅ Hutang berhasil dicatat!');
+    renderData();
+    updateSummary();
+  }
+
+  // ── Delete ──
+  function deleteData(id) {
+    deleteId = id;
+    document.getElementById('modalHapus').classList.add('open');
+  }
+  function closeHapus() {
+    document.getElementById('modalHapus').classList.remove('open');
+    deleteId = null;
+  }
+  function confirmHapus() {
+    if (deleteId === null) return;
+    saveData(getData().filter(d => d.id !== deleteId));
+    closeHapus();
+    showToast('🗑️ Data hutang dihapus');
+    renderData();
+    updateSummary();
+  }
+
+  // ── Bayar Modal ──
+  function openBayar(id) {
+    const item = getData().find(d => d.id === id);
+    if (!item) return;
+    bayarId = id;
+    document.getElementById('bayarNama').textContent = '👤 ' + item.nama;
+    document.getElementById('bayarSisa').textContent = 'Sisa: ' + fmt(item.sisa);
+    document.getElementById('inpBayar').value = '';
+    document.getElementById('modalBayar').classList.add('open');
+  }
+  function closeBayar() {
+    document.getElementById('modalBayar').classList.remove('open');
+    bayarId = null;
+  }
+
+  function prosessBayar() {
+    const bayar = parseInt(document.getElementById('inpBayar').value);
+    if (!bayar || bayar <= 0) { showToast('⚠️ Masukkan jumlah bayar'); return; }
+
+    const data = getData();
+    const item = data.find(d => d.id === bayarId);
+    if (!item) return;
+
+    if (bayar >= item.sisa) {
+      // Lunasi semua
+      item.sisa  = 0;
+      item.lunas = true;
+    } else {
+      item.sisa -= bayar;
+    }
+
+    item.riwayat.push({
+      tgl: new Date().toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }),
+      bayar
+    });
+
+    saveData(data);
+    closeBayar();
+    showToast(item.lunas ? '🎉 Hutang lunas!' : '✅ Pembayaran dicatat!');
+    renderData();
+    updateSummary();
+  }
+
+  function prosessLunas() {
+    const data = getData();
+    const item = data.find(d => d.id === bayarId);
+    if (!item) return;
+
+    item.riwayat.push({
+      tgl: new Date().toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }),
+      bayar: item.sisa
+    });
+    item.sisa  = 0;
+    item.lunas = true;
+
+    saveData(data);
+    closeBayar();
+    showToast('🎉 Hutang ' + item.nama + ' lunas!');
+    renderData();
+    updateSummary();
+  }
+
+  // ── Toggle riwayat ──
+  function toggleRiwayat(id) {
+    const el = document.getElementById('riwayat-' + id);
+    if (el) el.classList.toggle('open');
+  }
+
+  // ── Render ──
+  function renderData() {
+    const data   = getData();
+    const search = document.getElementById('searchInput').value.toLowerCase();
+
+    let filtered = data;
+    if (currentFilter === 'belum') filtered = filtered.filter(d => !d.lunas);
+    if (currentFilter === 'lunas') filtered = filtered.filter(d =>  d.lunas);
+    if (search) filtered = filtered.filter(d =>
+      d.nama.toLowerCase().includes(search) ||
+      (d.keterangan || '').toLowerCase().includes(search)
+    );
+
+    const el = document.getElementById('itemList');
+    if (filtered.length === 0) {
+      el.innerHTML = `<div class="empty-state"><div class="ei">📋</div><p>Belum ada data hutang.<br>Catat hutang pelanggan pertama!</p></div>`;
+      return;
+    }
+
+    el.innerHTML = filtered.map(item => {
+      const pct     = item.jumlah > 0 ? Math.round(((item.jumlah - item.sisa) / item.jumlah) * 100) : 100;
+      const inisial = item.nama.trim().split(' ').map(w => w[0]).join('').substring(0, 2);
+      const hasRiwayat = item.riwayat && item.riwayat.length > 0;
+
+      return `
+        <div class="hutang-card ${item.lunas ? 'lunas' : ''}">
+          <div class="hc-header">
+            <div class="hc-avatar ${item.lunas ? 'lunas' : ''}">${inisial}</div>
+            <div class="hc-info">
+              <div class="hc-nama">${item.nama}</div>
+              <div class="hc-tgl">
+                🗓 ${item.tanggal || '-'}
+                ${item.keterangan ? ' · ' + item.keterangan : ''}
+              </div>
+            </div>
+            <div class="hc-right">
+              <div class="hc-amount ${item.lunas ? 'lunas' : ''}">${fmt(item.sisa)}</div>
+              <div class="status-badge ${item.lunas ? 'badge-lunas' : 'badge-belum'}">
+                ${item.lunas ? '✅ Lunas' : '⏳ Belum Lunas'}
+              </div>
+            </div>
+          </div>
+
+          <div class="hc-progress">
+            <div class="hc-prog-label">
+              <span>Terbayar: ${fmt(item.jumlah - item.sisa)} dari ${fmt(item.jumlah)}</span>
+              <span>${pct}%</span>
+            </div>
+            <div class="prog-track">
+              <div class="prog-fill ${item.lunas ? 'lunas' : ''}" style="width:${pct}%"></div>
+            </div>
+          </div>
+
+          ${hasRiwayat ? `
+          <div class="hc-riwayat">
+            <button class="riwayat-toggle" onclick="toggleRiwayat(${item.id})">
+              📜 Riwayat bayar (${item.riwayat.length}x) ▾
+            </button>
+            <div class="riwayat-list" id="riwayat-${item.id}">
+              ${item.riwayat.map(r => `
+                <div class="riwayat-row">
+                  <span>🗓 ${r.tgl}</span>
+                  <span>+${fmt(r.bayar)}</span>
+                </div>`).join('')}
+            </div>
+          </div>` : ''}
+
+          <div class="hc-actions">
+            <button class="btn-bayar" onclick="openBayar(${item.id})" ${item.lunas ? 'disabled' : ''}>
+              💳 Bayar
+            </button>
+            <button class="btn-lunas" onclick="prosessLunasLangsung(${item.id})" ${item.lunas ? 'disabled' : ''}>
+              ✅ Tandai Lunas
+            </button>
+            <button class="btn-hapus" onclick="deleteData(${item.id})">🗑️</button>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function prosessLunasLangsung(id) {
+    const data = getData();
+    const item = data.find(d => d.id === id);
+    if (!item || item.lunas) return;
+    item.riwayat.push({
+      tgl: new Date().toLocaleDateString('id-ID', { day:'numeric', month:'short', year:'numeric' }),
+      bayar: item.sisa
+    });
+    item.sisa  = 0;
+    item.lunas = true;
+    saveData(data);
+    showToast('🎉 Hutang ' + item.nama + ' lunas!');
+    renderData();
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const data   = getData();
+    const belum  = data.filter(d => !d.lunas);
+    const lunas  = data.filter(d =>  d.lunas);
+    const totBelum = belum.reduce((s, d) => s + (d.sisa || 0), 0);
+    const totLunas = lunas.reduce((s, d) => s + (d.jumlah || 0), 0);
+
+    document.getElementById('sumBelum').textContent = fmt(totBelum);
+    document.getElementById('cntBelum').textContent = belum.length + ' pelanggan';
+    document.getElementById('sumLunas').textContent = fmt(totLunas);
+    document.getElementById('cntLunas').textContent = lunas.length + ' pelanggan';
+    document.getElementById('sumTotal').textContent = fmt(data.reduce((s,d) => s + d.jumlah, 0));
+    document.getElementById('cntTotal').textContent = data.length + ' total';
+  }
+
+  // Close modals on overlay click
+  document.getElementById('modalHapus').addEventListener('click', function(e) { if(e.target===this) closeHapus(); });
+  document.getElementById('modalBayar').addEventListener('click', function(e) { if(e.target===this) closeBayar(); });
+
+  renderData();
+  updateSummary();
+</script>
+</body>
+</html>
