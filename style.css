@@ -20,6 +20,11 @@
             
         }
 
+        .brand-icon img {
+            width: 74px; aspect-ratio: 1/1;
+            object-fit: contain;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, var(--bg-dark) 0%, #1856bb 100%);
