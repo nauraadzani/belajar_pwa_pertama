@@ -1,658 +1,1330 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#1a3a2a" />
   <title>Warung Pintar - Stok Barang</title>
   <style>
+    @import url(style.css);
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #f5f2eb;
-      --surface:   #ffffff;
-      --border:    #e2ddd5;
-      --text:      #1a1a1a;
-      --muted:     #6b6460;
-      --accent:    #1a5c38;
-      --accent2:   #e8f5ee;
-      --danger:    #c0392b;
-      --danger-bg: #fdf0ee;
-      --warning:   #b7791f;
-      --warn-bg:   #fef9ee;
-      --warn-bdr:  #f7d98c;
-      --page:      #1a4a5c;
-      --page-lt:   #e6f4f8;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
 
-    .header { background: var(--page); color: #fff; padding: 0 1.5rem; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.15); }
-    .header-inner { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; }
-    .brand { display: flex; align-items: center; gap: 10px; }
-    .brand-icon { width: 34px; height: 34px; background: rgba(255,255,255,.18); border-radius: 8px; display: grid; place-items: center; font-size: 18px; }
-    .brand-name { font-family: 'Syne', sans-serif; font-size: 1.15rem; letter-spacing: .5px; }
-    .page-title { font-size: .82rem; opacity: .85; font-weight: 500; }
+    .header {
+      background: var(--danger);
+      color: #fff;
+      padding: 0 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, .15);
+    }
 
-    .nav { background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; }
-    .nav::-webkit-scrollbar { display: none; }
-    .nav-inner { max-width: 760px; margin: 0 auto; display: flex; }
-    .nav-link { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 18px; text-decoration: none; color: var(--muted); font-size: .72rem; font-weight: 500; border-bottom: 2.5px solid transparent; white-space: nowrap; transition: color .15s, border-color .15s; }
-    .nav-link span.icon { font-size: 17px; }
-    .nav-link.active, .nav-link:hover { color: var(--page); border-bottom-color: var(--page); }
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
 
-    .main { max-width: 760px; margin: 0 auto; padding: 1.25rem 1rem 5rem; }
-    .section-label { font-size: .7rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: .75rem; }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      background: rgba(255, 255, 255, .18);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+    }
+
+    .brand-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: .5px;
+    }
+
+    .page-title {
+      font-size: .82rem;
+      opacity: .85;
+      font-weight: 500;
+    }
+
+    .nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+    }
+
+    .nav-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 10px 18px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 500;
+      border-bottom: 2.5px solid transparent;
+      white-space: nowrap;
+      transition: color .15s, border-color .15s;
+    }
+
+    .nav-link span.icon {
+      font-size: 17px;
+    }
+
+    .nav-link.active,
+    .nav-link:hover {
+      color: var(--page);
+      border-bottom-color: var(--page);
+    }
+
+    .main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 5rem;
+    }
+
+    .section-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .75rem;
+    }
 
     /* Alert stok menipis */
     .alert-banner {
-      background: var(--warn-bg); border: 1px solid var(--warn-bdr);
-      border-radius: 12px; padding: .85rem 1rem;
-      display: flex; align-items: flex-start; gap: 10px;
-      margin-bottom: 1.25rem; display: none;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-bdr);
+      border-radius: 12px;
+      padding: .85rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+      display: none;
     }
-    .alert-banner.show { display: flex; }
-    .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-    .alert-body { flex: 1; }
-    .alert-title { font-size: .82rem; font-weight: 700; color: var(--warning); margin-bottom: 4px; }
-    .alert-list  { font-size: .75rem; color: var(--muted); line-height: 1.6; }
+
+    .alert-banner.show {
+      display: flex;
+    }
+
+    .alert-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .alert-body {
+      flex: 1;
+    }
+
+    .alert-title {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--warning);
+      margin-bottom: 4px;
+    }
+
+    .alert-list {
+      font-size: .75rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
 
     /* Summary */
-    .summary-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 1.25rem; }
-    .sum-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: .8rem .85rem; }
-    .sum-card .sc-label { font-size: .64rem; color: var(--muted); font-weight: 500; margin-bottom: 4px; }
-    .sum-card .sc-val { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; line-height: 1; }
-    .sc-blue   { color: var(--page); }
-    .sc-green  { color: var(--accent); }
-    .sc-warn   { color: var(--warning); }
-    .sc-red    { color: var(--danger); }
-    .sum-card .sc-sub { font-size: .62rem; color: var(--muted); margin-top: 3px; }
+    .summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 1.25rem;
+    }
+
+    .sum-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .8rem .85rem;
+    }
+
+    .sum-card .sc-label {
+      font-size: .64rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .sum-card .sc-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .sc-blue {
+      color: var(--page);
+    }
+
+    .sc-green {
+      color: var(--accent);
+    }
+
+    .sc-warn {
+      color: var(--warning);
+    }
+
+    .sc-red {
+      color: var(--danger);
+    }
+
+    .sum-card .sc-sub {
+      font-size: .62rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
 
     /* Form tambah barang */
-    .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem; margin-bottom: 1.25rem; }
-    .form-card h2 { font-size: .9rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
-    .form-row.three { grid-template-columns: 1fr 1fr 1fr; }
-    .form-row.full  { grid-template-columns: 1fr; }
-    .field label { display: block; font-size: .72rem; font-weight: 600; color: var(--muted); margin-bottom: 5px; }
-    .field input, .field select {
-      width: 100%; padding: 9px 11px; border: 1px solid var(--border); border-radius: 9px;
-      font-size: .85rem; font-family: inherit; background: var(--bg); color: var(--text); outline: none; transition: border-color .15s;
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
     }
-    .field input:focus, .field select:focus { border-color: var(--page); background: #fff; }
-    .btn-submit { width: 100%; padding: 11px; background: var(--page); color: #fff; border: none; border-radius: 10px; font-size: .9rem; font-weight: 700; font-family: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; transition: opacity .15s, transform .1s; margin-top: 4px; }
-    .btn-submit:hover { opacity: .9; }
-    .btn-submit:active { transform: scale(.98); }
+
+    .form-card h2 {
+      font-size: .9rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .form-row.three {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .form-row.full {
+      grid-template-columns: 1fr;
+    }
+
+    .field label {
+      display: block;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: .85rem;
+      font-family: inherit;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--page);
+      background: #fff;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 11px;
+      background: var(--danger);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: .9rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: opacity .15s, transform .1s;
+      margin-top: 4px;
+    }
+
+    .btn-submit:hover {
+      opacity: .9;
+    }
+
+    .btn-submit:active {
+      transform: scale(.98);
+    }
 
     /* Toolbar */
-    .toolbar { display: flex; gap: 8px; margin-bottom: 1rem; }
-    .toolbar input { flex: 1; padding: 8px 12px; border: 1px solid var(--border); border-radius: 9px; font-size: .82rem; font-family: inherit; background: var(--surface); outline: none; }
-    .toolbar input:focus { border-color: var(--page); }
-    .filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; }
-    .ftab { padding: 5px 12px; border-radius: 99px; border: 1px solid var(--border); background: var(--surface); font-size: .73rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: all .15s; }
-    .ftab.active { background: var(--page); color: #fff; border-color: var(--page); }
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .toolbar input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: .82rem;
+      font-family: inherit;
+      background: var(--surface);
+      outline: none;
+    }
+
+    .toolbar input:focus {
+      border-color: var(--page);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .ftab {
+      padding: 5px 12px;
+      border-radius: 99px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: .73rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .15s;
+    }
+
+    .ftab.active {
+      background: var(--page);
+      color: #fff;
+      border-color: var(--page);
+    }
 
     /* Item grid */
-    .item-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .item-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
 
     .stok-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 14px; overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
       animation: fadeIn .2s ease;
     }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
-    .stok-card.habis  { border-color: #f0b8b2; background: #fffafa; }
-    .stok-card.tipis  { border-color: var(--warn-bdr); background: #fffef8; }
-    .stok-card.aman   { border-color: #b0d9c0; }
 
-    .sc-top { padding: .85rem .9rem .6rem; }
-    .sc-kategori { font-size: .63rem; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
-    .sc-nama { font-weight: 700; font-size: .95rem; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .sc-satuan { font-size: .7rem; color: var(--muted); }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
 
-    .sc-qty-row { display: flex; align-items: baseline; gap: 5px; margin: .6rem 0 .4rem; }
-    .sc-qty-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; line-height: 1; }
-    .sc-qty-sat { font-size: .78rem; color: var(--muted); }
-    .qty-aman  { color: var(--accent); }
-    .qty-tipis { color: var(--warning); }
-    .qty-habis { color: var(--danger); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-    .sc-status-badge { display: inline-block; font-size: .63rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; margin-bottom: .5rem; }
-    .sb-aman  { background: var(--accent2); color: var(--accent); }
-    .sb-tipis { background: var(--warn-bg); color: var(--warning); }
-    .sb-habis { background: var(--danger-bg); color: var(--danger); }
+    .stok-card.habis {
+      border-color: #f0b8b2;
+      background: #fffafa;
+    }
+
+    .stok-card.tipis {
+      border-color: var(--warn-bdr);
+      background: #fffef8;
+    }
+
+    .stok-card.aman {
+      border-color: #b0d9c0;
+    }
+
+    .sc-top {
+      padding: .85rem .9rem .6rem;
+    }
+
+    .sc-kategori {
+      font-size: .63rem;
+      font-weight: 700;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .sc-nama {
+      font-weight: 700;
+      font-size: .95rem;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sc-satuan {
+      font-size: .7rem;
+      color: var(--muted);
+    }
+
+    .sc-qty-row {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      margin: .6rem 0 .4rem;
+    }
+
+    .sc-qty-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .sc-qty-sat {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    .qty-aman {
+      color: var(--accent);
+    }
+
+    .qty-tipis {
+      color: var(--warning);
+    }
+
+    .qty-habis {
+      color: var(--danger);
+    }
+
+    .sc-status-badge {
+      display: inline-block;
+      font-size: .63rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+      margin-bottom: .5rem;
+    }
+
+    .sb-aman {
+      background: var(--accent2);
+      color: var(--accent);
+    }
+
+    .sb-tipis {
+      background: var(--warn-bg);
+      color: var(--warning);
+    }
+
+    .sb-habis {
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
 
     /* Progress stok */
-    .sc-prog { padding: 0 .9rem .5rem; }
-    .sc-prog-label { display: flex; justify-content: space-between; font-size: .62rem; color: var(--muted); margin-bottom: 3px; }
-    .sc-prog-track { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
-    .sc-prog-fill { height: 100%; border-radius: 99px; transition: width .4s; }
-    .fill-aman  { background: var(--accent); }
-    .fill-tipis { background: var(--warning); }
-    .fill-habis { background: var(--danger); }
+    .sc-prog {
+      padding: 0 .9rem .5rem;
+    }
+
+    .sc-prog-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: .62rem;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .sc-prog-track {
+      height: 4px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .sc-prog-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width .4s;
+    }
+
+    .fill-aman {
+      background: var(--accent);
+    }
+
+    .fill-tipis {
+      background: var(--warning);
+    }
+
+    .fill-habis {
+      background: var(--danger);
+    }
 
     /* Harga & aksi */
-    .sc-harga { padding: .3rem .9rem .2rem; font-size: .75rem; color: var(--muted); }
-    .sc-harga span { font-weight: 600; color: var(--text); }
-
-    .sc-actions { display: flex; border-top: 1px solid var(--border); }
-    .btn-kurang, .btn-tambah, .btn-edit-stok {
-      flex: 1; padding: 8px 4px; border: none; background: none;
-      font-family: inherit; font-size: .8rem; font-weight: 700; cursor: pointer;
-      transition: background .15s; display: flex; align-items: center; justify-content: center; gap: 4px;
+    .sc-harga {
+      padding: .3rem .9rem .2rem;
+      font-size: .75rem;
+      color: var(--muted);
     }
-    .btn-kurang { color: var(--danger); border-right: 1px solid var(--border); }
-    .btn-kurang:hover { background: var(--danger-bg); }
-    .btn-tambah { color: var(--accent); border-right: 1px solid var(--border); }
-    .btn-tambah:hover { background: var(--accent2); }
-    .btn-edit-stok { color: var(--page); }
-    .btn-edit-stok:hover { background: var(--page-lt); }
+
+    .sc-harga span {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .sc-actions {
+      display: flex;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-kurang,
+    .btn-tambah,
+    .btn-edit-stok {
+      flex: 1;
+      padding: 8px 4px;
+      border: none;
+      background: none;
+      font-family: inherit;
+      font-size: .8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .btn-kurang {
+      color: var(--danger);
+      border-right: 1px solid var(--border);
+    }
+
+    .btn-kurang:hover {
+      background: var(--danger-bg);
+    }
+
+    .btn-tambah {
+      color: var(--accent);
+      border-right: 1px solid var(--border);
+    }
+
+    .btn-tambah:hover {
+      background: var(--accent2);
+    }
+
+    .btn-edit-stok {
+      color: var(--page);
+    }
+
+    .btn-edit-stok:hover {
+      background: var(--page-lt);
+    }
 
     /* Empty */
-    .empty-state { text-align: center; padding: 2.5rem 1rem; color: var(--muted); grid-column: 1/-1; }
-    .empty-state .ei { font-size: 40px; margin-bottom: .75rem; }
-    .empty-state p { font-size: .85rem; }
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--muted);
+      grid-column: 1/-1;
+    }
+
+    .empty-state .ei {
+      font-size: 40px;
+      margin-bottom: .75rem;
+    }
+
+    .empty-state p {
+      font-size: .85rem;
+    }
 
     /* Bottom nav */
-    .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 1px solid var(--border); display: flex; justify-content: space-around; padding: 6px 0 calc(6px + env(safe-area-inset-bottom)); z-index: 200; }
-    .bb-item { display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; color: var(--muted); font-size: .62rem; font-weight: 600; padding: 4px 10px; border-radius: 8px; }
-    .bb-item span.icon { font-size: 20px; }
-    .bb-item.active, .bb-item:hover { color: var(--accent); }
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      padding: 6px 0 calc(6px + env(safe-area-inset-bottom));
+      z-index: 200;
+    }
+
+    .bb-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .62rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .bb-item span.icon {
+      font-size: 20px;
+    }
+
+    .bb-item.active,
+    .bb-item:hover {
+      color: var(--accent);
+    }
 
     /* Toast */
-    .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1a; color: #fff; padding: 10px 20px; border-radius: 99px; font-size: .82rem; font-weight: 600; opacity: 0; transition: all .3s; z-index: 999; white-space: nowrap; }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 99px;
+      font-size: .82rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: all .3s;
+      z-index: 999;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
 
     /* Modal hapus */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none; align-items: center; justify-content: center; z-index: 500; padding: 1rem; }
-    .modal-overlay.open { display: flex; }
-    .modal { background: var(--surface); border-radius: 16px; padding: 1.5rem; max-width: 320px; width: 100%; }
-    .modal h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
-    .modal p  { font-size: .83rem; color: var(--muted); margin-bottom: 1.25rem; }
-    .modal-btns { display: flex; gap: 8px; }
-    .btn-cancel { flex: 1; padding: 9px; border: 1px solid var(--border); border-radius: 9px; background: none; font-family: inherit; font-size: .85rem; font-weight: 600; cursor: pointer; }
-    .btn-confirm-del { flex: 1; padding: 9px; border: none; border-radius: 9px; background: var(--danger); color: #fff; font-family: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; }
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 500;
+      padding: 1rem;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 1.5rem;
+      max-width: 320px;
+      width: 100%;
+    }
+
+    .modal h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+
+    .modal p {
+      font-size: .83rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-cancel {
+      flex: 1;
+      padding: 9px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: none;
+      font-family: inherit;
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-confirm-del {
+      flex: 1;
+      padding: 9px;
+      border: none;
+      border-radius: 9px;
+      background: var(--danger);
+      color: #fff;
+      font-family: inherit;
+      font-size: .85rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
 
     /* Modal update stok & ubah jumlah */
-    .modal-stok { background: var(--surface); border-radius: 16px; padding: 1.5rem; max-width: 340px; width: 100%; }
-    .modal-stok h3 { font-size: 1rem; font-weight: 700; margin-bottom: .25rem; }
-    .modal-stok .ms-sub { font-size: .78rem; color: var(--muted); margin-bottom: 1rem; }
-    .modal-stok label { display: block; font-size: .72rem; font-weight: 600; color: var(--muted); margin-bottom: 5px; }
-    .modal-stok input, .modal-stok select {
-      width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 9px;
-      font-size: .95rem; font-family: inherit; background: var(--bg); outline: none; margin-bottom: 1rem;
+    .modal-stok {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 1.5rem;
+      max-width: 340px;
+      width: 100%;
     }
-    .modal-stok input:focus, .modal-stok select:focus { border-color: var(--page); background: #fff; }
-    .stok-btns { display: flex; gap: 8px; }
-    .btn-stok-confirm { flex: 1; padding: 10px; background: var(--page); color: #fff; border: none; border-radius: 9px; font-family: inherit; font-size: .88rem; font-weight: 700; cursor: pointer; }
+
+    .modal-stok h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .25rem;
+    }
+
+    .modal-stok .ms-sub {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .modal-stok label {
+      display: block;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .modal-stok input,
+    .modal-stok select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: .95rem;
+      font-family: inherit;
+      background: var(--bg);
+      outline: none;
+      margin-bottom: 1rem;
+    }
+
+    .modal-stok input:focus,
+    .modal-stok select:focus {
+      border-color: var(--page);
+      background: #fff;
+    }
+
+    .stok-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-stok-confirm {
+      flex: 1;
+      padding: 10px;
+      background: var(--page);
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
 
     /* Modal edit (edit semua field) */
-    .modal-edit { background: var(--surface); border-radius: 16px; padding: 1.5rem; max-width: 360px; width: 100%; max-height: 90vh; overflow-y: auto; }
-    .modal-edit h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
-    .modal-edit .field label { font-size: .72rem; font-weight: 600; color: var(--muted); margin-bottom: 5px; display: block; }
-    .modal-edit .field { margin-bottom: 10px; }
-    .modal-edit .field input, .modal-edit .field select { width: 100%; padding: 9px 11px; border: 1px solid var(--border); border-radius: 9px; font-size: .85rem; font-family: inherit; background: var(--bg); outline: none; }
-    .modal-edit .field input:focus, .modal-edit .field select:focus { border-color: var(--page); background: #fff; }
-    .edit-btns { display: flex; gap: 8px; margin-top: .5rem; }
-    .btn-edit-save { flex: 1; padding: 10px; background: var(--page); color: #fff; border: none; border-radius: 9px; font-family: inherit; font-size: .88rem; font-weight: 700; cursor: pointer; }
-    .btn-edit-del  { padding: 10px 14px; background: none; color: var(--danger); border: 1px solid #f0b8b2; border-radius: 9px; font-family: inherit; font-size: .88rem; font-weight: 700; cursor: pointer; }
-    .btn-edit-del:hover { background: var(--danger-bg); }
+    .modal-edit {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 1.5rem;
+      max-width: 360px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
 
-    section { margin-bottom: 1.25rem; }
+    .modal-edit h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .modal-edit .field label {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .modal-edit .field {
+      margin-bottom: 10px;
+    }
+
+    .modal-edit .field input,
+    .modal-edit .field select {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: .85rem;
+      font-family: inherit;
+      background: var(--bg);
+      outline: none;
+    }
+
+    .modal-edit .field input:focus,
+    .modal-edit .field select:focus {
+      border-color: var(--page);
+      background: #fff;
+    }
+
+    .edit-btns {
+      display: flex;
+      gap: 8px;
+      margin-top: .5rem;
+    }
+
+    .btn-edit-save {
+      flex: 1;
+      padding: 10px;
+      background: var(--page);
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-edit-del {
+      padding: 10px 14px;
+      background: none;
+      color: var(--danger);
+      border: 1px solid #f0b8b2;
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-edit-del:hover {
+      background: var(--danger-bg);
+    }
+
+    section {
+      margin-bottom: 1.25rem;
+    }
   </style>
 </head>
+
 <body>
 
-<header class="header">
-  <div class="header-inner">
-    <div class="brand">
-      <div class="brand-icon">🏪</div>
-      <span class="brand-name">Warung Pintar</span>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon">🏪</div>
+        <span class="brand-name">Warung Pintar</span>
+      </div>
+      <span class="page-title">📦 Stok Barang</span>
     </div>
-    <span class="page-title">📦 Stok Barang</span>
-  </div>
-</header>
+  </header>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="dashboard.html" class="nav-link"><span class="icon">📊</span>Dashboard</a>
-    <a href="pemasukan.html" class="nav-link"><span class="icon">💰</span>Pemasukan</a>
-    <a href="pengeluaran.html" class="nav-link"><span class="icon">🛒</span>Pengeluaran</a>
-    <a href="hutang.html" class="nav-link"><span class="icon">📋</span>Hutang</a>
-    <a href="stok.html" class="nav-link active"><span class="icon">📦</span>Stok</a>
-  </div>
-</nav>
-
-<main class="main">
-
-  <!-- Alert stok menipis/habis -->
-  <div class="alert-banner" id="alertBanner">
-    <div class="alert-icon">⚠️</div>
-    <div class="alert-body">
-      <div class="alert-title">Perhatian — Stok Perlu Diisi!</div>
-      <div class="alert-list" id="alertList"></div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-link"><span class="icon">📊</span>Dashboard</a>
+      <a href="pemasukan.html" class="nav-link"><span class="icon">💰</span>Pemasukan</a>
+      <a href="pengeluaran.html" class="nav-link"><span class="icon">🛒</span>Pengeluaran</a>
+      <a href="hutang.html" class="nav-link"><span class="icon">📋</span>Hutang</a>
+      <a href="stok.html" class="nav-link active"><span class="icon">📦</span>Stok</a>
     </div>
-  </div>
+  </nav>
 
-  <!-- Summary -->
-  <section>
-    <div class="section-label">Ringkasan Stok</div>
-    <div class="summary-strip">
-      <div class="sum-card">
-        <div class="sc-label">📦 Total Barang</div>
-        <div class="sc-val sc-blue" id="sumTotal">0</div>
-        <div class="sc-sub">jenis barang</div>
-      </div>
-      <div class="sum-card">
-        <div class="sc-label">✅ Stok Aman</div>
-        <div class="sc-val sc-green" id="sumAman">0</div>
-        <div class="sc-sub">barang</div>
-      </div>
-      <div class="sum-card">
-        <div class="sc-label">⚠️ Stok Tipis</div>
-        <div class="sc-val sc-warn" id="sumTipis">0</div>
-        <div class="sc-sub">barang</div>
-      </div>
-      <div class="sum-card">
-        <div class="sc-label">🚨 Habis</div>
-        <div class="sc-val sc-red" id="sumHabis">0</div>
-        <div class="sc-sub">barang</div>
+  <main class="main">
+
+    <!-- Alert stok menipis/habis -->
+    <div class="alert-banner" id="alertBanner">
+      <div class="alert-icon">⚠️</div>
+      <div class="alert-body">
+        <div class="alert-title">Perhatian — Stok Perlu Diisi!</div>
+        <div class="alert-list" id="alertList"></div>
       </div>
     </div>
-  </section>
 
-  <!-- Form Tambah -->
-  <section>
-    <div class="form-card">
-      <h2>➕ Tambah Barang Baru</h2>
-      <div class="form-row">
-        <div class="field">
-          <label>NAMA BARANG *</label>
-          <input type="text" id="inpNama" placeholder="cth: Beras 5kg" maxlength="60" />
+    <!-- Summary -->
+    <section>
+      <div class="section-label">Ringkasan Stok</div>
+      <div class="summary-strip">
+        <div class="sum-card">
+          <div class="sc-label">📦 Total Barang</div>
+          <div class="sc-val sc-blue" id="sumTotal">0</div>
+          <div class="sc-sub">jenis barang</div>
         </div>
-        <div class="field">
-          <label>KATEGORI</label>
-          <select id="inpKat">
-            <option value="Sembako">🌾 Sembako</option>
-            <option value="Minuman">🥤 Minuman</option>
-            <option value="Snack">🍪 Snack</option>
-            <option value="Bumbu">🧄 Bumbu</option>
-            <option value="Kebersihan">🧹 Kebersihan</option>
-            <option value="Lainnya">📌 Lainnya</option>
-          </select>
+        <div class="sum-card">
+          <div class="sc-label">✅ Stok Aman</div>
+          <div class="sc-val sc-green" id="sumAman">0</div>
+          <div class="sc-sub">barang</div>
         </div>
-      </div>
-      <div class="form-row three">
-        <div class="field">
-          <label>STOK AWAL *</label>
-          <input type="number" id="inpStok" placeholder="0" min="0" />
+        <div class="sum-card">
+          <div class="sc-label">⚠️ Stok Tipis</div>
+          <div class="sc-val sc-warn" id="sumTipis">0</div>
+          <div class="sc-sub">barang</div>
         </div>
-        <div class="field">
-          <label>SATUAN</label>
-          <select id="inpSatuan">
-            <option value="pcs">pcs</option>
-            <option value="kg">kg</option>
-            <option value="liter">liter</option>
-            <option value="bks">bks</option>
-            <option value="dus">dus</option>
-            <option value="lusin">lusin</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>STOK MINIMUM</label>
-          <input type="number" id="inpMin" placeholder="5" min="0" />
+        <div class="sum-card">
+          <div class="sc-label">🚨 Habis</div>
+          <div class="sc-val sc-red" id="sumHabis">0</div>
+          <div class="sc-sub">barang</div>
         </div>
       </div>
-      <div class="form-row">
-        <div class="field">
-          <label>HARGA BELI (Rp)</label>
-          <input type="number" id="inpHargaBeli" placeholder="10000" min="0" />
+    </section>
+
+    <!-- Form Tambah -->
+    <section>
+      <div class="form-card">
+        <h2>➕ Tambah Barang Baru</h2>
+        <div class="form-row">
+          <div class="field">
+            <label>NAMA BARANG *</label>
+            <input type="text" id="inpNama" placeholder="cth: Beras 5kg" maxlength="60" />
+          </div>
+          <div class="field">
+            <label>KATEGORI</label>
+            <select id="inpKat">
+              <option value="Sembako">🌾 Sembako</option>
+              <option value="Minuman">🥤 Minuman</option>
+              <option value="Snack">🍪 Snack</option>
+              <option value="Bumbu">🧄 Bumbu</option>
+              <option value="Kebersihan">🧹 Kebersihan</option>
+              <option value="Lainnya">📌 Lainnya</option>
+            </select>
+          </div>
         </div>
-        <div class="field">
-          <label>HARGA JUAL (Rp)</label>
-          <input type="number" id="inpHargaJual" placeholder="12000" min="0" />
+        <div class="form-row three">
+          <div class="field">
+            <label>STOK AWAL *</label>
+            <input type="number" id="inpStok" placeholder="0" min="0" />
+          </div>
+          <div class="field">
+            <label>SATUAN</label>
+            <select id="inpSatuan">
+              <option value="pcs">pcs</option>
+              <option value="kg">kg</option>
+              <option value="liter">liter</option>
+              <option value="bks">bks</option>
+              <option value="dus">dus</option>
+              <option value="lusin">lusin</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>STOK MINIMUM</label>
+            <input type="number" id="inpMin" placeholder="5" min="0" />
+          </div>
         </div>
+        <div class="form-row">
+          <div class="field">
+            <label>HARGA BELI (Rp)</label>
+            <input type="number" id="inpHargaBeli" placeholder="10000" min="0" />
+          </div>
+          <div class="field">
+            <label>HARGA JUAL (Rp)</label>
+            <input type="number" id="inpHargaJual" placeholder="12000" min="0" />
+          </div>
+        </div>
+        <button class="btn-submit" onclick="addData()">
+          <span>💾</span> Simpan Barang
+        </button>
       </div>
-      <button class="btn-submit" onclick="addData()">
-        <span>💾</span> Simpan Barang
-      </button>
-    </div>
-  </section>
+    </section>
 
-  <!-- List -->
-  <section>
-    <div class="section-label">Daftar Barang</div>
-    <div class="toolbar">
-      <input type="text" id="searchInput" placeholder="🔍 Cari nama barang..." oninput="renderData()" />
-    </div>
-    <div class="filter-tabs">
-      <button class="ftab active" onclick="setFilter('semua', this)">Semua</button>
-      <button class="ftab" onclick="setFilter('aman', this)">✅ Aman</button>
-      <button class="ftab" onclick="setFilter('tipis', this)">⚠️ Tipis</button>
-      <button class="ftab" onclick="setFilter('habis', this)">🚨 Habis</button>
-      <button class="ftab" onclick="setFilter('Sembako', this)">🌾 Sembako</button>
-      <button class="ftab" onclick="setFilter('Minuman', this)">🥤 Minuman</button>
-      <button class="ftab" onclick="setFilter('Snack', this)">🍪 Snack</button>
-    </div>
-    <div class="item-grid" id="itemGrid"></div>
-  </section>
+    <!-- List -->
+    <section>
+      <div class="section-label">Daftar Barang</div>
+      <div class="toolbar">
+        <input type="text" id="searchInput" placeholder="🔍 Cari nama barang..." oninput="renderData()" />
+      </div>
+      <div class="filter-tabs">
+        <button class="ftab active" onclick="setFilter('semua', this)">Semua</button>
+        <button class="ftab" onclick="setFilter('aman', this)">✅ Aman</button>
+        <button class="ftab" onclick="setFilter('tipis', this)">⚠️ Tipis</button>
+        <button class="ftab" onclick="setFilter('habis', this)">🚨 Habis</button>
+        <button class="ftab" onclick="setFilter('Sembako', this)">🌾 Sembako</button>
+        <button class="ftab" onclick="setFilter('Minuman', this)">🥤 Minuman</button>
+        <button class="ftab" onclick="setFilter('Snack', this)">🍪 Snack</button>
+      </div>
+      <div class="item-grid" id="itemGrid"></div>
+    </section>
 
-</main>
+  </main>
 
-<nav class="bottom-bar">
-  <a href="dashboard.html" class="bb-item"><span class="icon">📊</span>Dashboard</a>
-  <a href="pemasukan.html" class="bb-item"><span class="icon">💰</span>Masuk</a>
-  <a href="pengeluaran.html" class="bb-item"><span class="icon">🛒</span>Keluar</a>
-  <a href="hutang.html" class="bb-item"><span class="icon">📋</span>Hutang</a>
-  <a href="stok.html" class="bb-item active"><span class="icon">📦</span>Stok</a>
-</nav>
+  <nav class="bottom-bar">
+    <a href="index.html" class="bb-item"><span class="icon">📊</span>Dashboard</a>
+    <a href="pemasukan.html" class="bb-item"><span class="icon">💰</span>Masuk</a>
+    <a href="pengeluaran.html" class="bb-item"><span class="icon">🛒</span>Keluar</a>
+    <a href="hutang.html" class="bb-item"><span class="icon">📋</span>Hutang</a>
+    <a href="stok.html" class="bb-item active"><span class="icon">📦</span>Stok</a>
+  </nav>
 
-<div class="toast" id="toast"></div>
+  <div class="toast" id="toast"></div>
 
-<!-- Modal Hapus -->
-<div class="modal-overlay" id="modalHapus">
-  <div class="modal">
-    <h3>🗑️ Hapus Barang?</h3>
-    <p>Data barang dan stoknya akan dihapus permanen. Lanjutkan?</p>
-    <div class="modal-btns">
-      <button class="btn-cancel" onclick="closeHapus()">Batal</button>
-      <button class="btn-confirm-del" onclick="confirmHapus()">Hapus</button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Update Stok (Tambah / Kurang) -->
-<div class="modal-overlay" id="modalStok">
-  <div class="modal-stok">
-    <h3 id="stokModalTitle">Tambah Stok</h3>
-    <div class="ms-sub" id="stokModalSub">Nama barang</div>
-    <label>JUMLAH</label>
-    <input type="number" id="inpJmlStok" placeholder="cth: 10" min="1" />
-    <label>CATATAN (opsional)</label>
-    <input type="text" id="inpCatatanStok" placeholder="cth: Restock dari supplier" style="margin-bottom:1rem;" />
-    <div class="stok-btns">
-      <button class="btn-cancel" onclick="closeModalStok()" style="flex:1;padding:10px;border:1px solid var(--border);border-radius:9px;background:none;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;">Batal</button>
-      <button class="btn-stok-confirm" onclick="prosessStok()">Simpan</button>
+  <!-- Modal Hapus -->
+  <div class="modal-overlay" id="modalHapus">
+    <div class="modal">
+      <h3>🗑️ Hapus Barang?</h3>
+      <p>Data barang dan stoknya akan dihapus permanen. Lanjutkan?</p>
+      <div class="modal-btns">
+        <button class="btn-cancel" onclick="closeHapus()">Batal</button>
+        <button class="btn-confirm-del" onclick="confirmHapus()">Hapus</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Modal Edit Barang -->
-<div class="modal-overlay" id="modalEdit">
-  <div class="modal-edit">
-    <h3>✏️ Edit Barang</h3>
-    <input type="hidden" id="editId" />
-    <div class="field">
-      <label>NAMA BARANG</label>
-      <input type="text" id="editNama" maxlength="60" />
-    </div>
-    <div class="field">
-      <label>KATEGORI</label>
-      <select id="editKat">
-        <option value="Sembako">🌾 Sembako</option>
-        <option value="Minuman">🥤 Minuman</option>
-        <option value="Snack">🍪 Snack</option>
-        <option value="Bumbu">🧄 Bumbu</option>
-        <option value="Kebersihan">🧹 Kebersihan</option>
-        <option value="Lainnya">📌 Lainnya</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>STOK SAAT INI</label>
-      <input type="number" id="editStok" min="0" />
-    </div>
-    <div class="field">
-      <label>SATUAN</label>
-      <select id="editSatuan">
-        <option value="pcs">pcs</option>
-        <option value="kg">kg</option>
-        <option value="liter">liter</option>
-        <option value="bks">bks</option>
-        <option value="dus">dus</option>
-        <option value="lusin">lusin</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>STOK MINIMUM (notifikasi)</label>
-      <input type="number" id="editMin" min="0" />
-    </div>
-    <div class="field">
-      <label>HARGA BELI (Rp)</label>
-      <input type="number" id="editHargaBeli" min="0" />
-    </div>
-    <div class="field">
-      <label>HARGA JUAL (Rp)</label>
-      <input type="number" id="editHargaJual" min="0" />
-    </div>
-    <div class="edit-btns">
-      <button class="btn-cancel" onclick="closeEdit()" style="flex:1;padding:10px;border:1px solid var(--border);border-radius:9px;background:none;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;">Batal</button>
-      <button class="btn-edit-save" onclick="saveEdit()">Simpan</button>
-      <button class="btn-edit-del" onclick="hapusDariEdit()">🗑️</button>
+  <!-- Modal Update Stok (Tambah / Kurang) -->
+  <div class="modal-overlay" id="modalStok">
+    <div class="modal-stok">
+      <h3 id="stokModalTitle">Tambah Stok</h3>
+      <div class="ms-sub" id="stokModalSub">Nama barang</div>
+      <label>JUMLAH</label>
+      <input type="number" id="inpJmlStok" placeholder="cth: 10" min="1" />
+      <label>CATATAN (opsional)</label>
+      <input type="text" id="inpCatatanStok" placeholder="cth: Restock dari supplier" style="margin-bottom:1rem;" />
+      <div class="stok-btns">
+        <button class="btn-cancel" onclick="closeModalStok()"
+          style="flex:1;padding:10px;border:1px solid var(--border);border-radius:9px;background:none;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;">Batal</button>
+        <button class="btn-stok-confirm" onclick="prosessStok()">Simpan</button>
+      </div>
     </div>
   </div>
-</div>
 
-<script>
-  const KEY = 'warung_stok';
-  let currentFilter = 'semua';
-  let deleteId  = null;
-  let stokId    = null;
-  let stokMode  = 'tambah'; // 'tambah' | 'kurang'
+  <!-- Modal Edit Barang -->
+  <div class="modal-overlay" id="modalEdit">
+    <div class="modal-edit">
+      <h3>✏️ Edit Barang</h3>
+      <input type="hidden" id="editId" />
+      <div class="field">
+        <label>NAMA BARANG</label>
+        <input type="text" id="editNama" maxlength="60" />
+      </div>
+      <div class="field">
+        <label>KATEGORI</label>
+        <select id="editKat">
+          <option value="Sembako">🌾 Sembako</option>
+          <option value="Minuman">🥤 Minuman</option>
+          <option value="Snack">🍪 Snack</option>
+          <option value="Bumbu">🧄 Bumbu</option>
+          <option value="Kebersihan">🧹 Kebersihan</option>
+          <option value="Lainnya">📌 Lainnya</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>STOK SAAT INI</label>
+        <input type="number" id="editStok" min="0" />
+      </div>
+      <div class="field">
+        <label>SATUAN</label>
+        <select id="editSatuan">
+          <option value="pcs">pcs</option>
+          <option value="kg">kg</option>
+          <option value="liter">liter</option>
+          <option value="bks">bks</option>
+          <option value="dus">dus</option>
+          <option value="lusin">lusin</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>STOK MINIMUM (notifikasi)</label>
+        <input type="number" id="editMin" min="0" />
+      </div>
+      <div class="field">
+        <label>HARGA BELI (Rp)</label>
+        <input type="number" id="editHargaBeli" min="0" />
+      </div>
+      <div class="field">
+        <label>HARGA JUAL (Rp)</label>
+        <input type="number" id="editHargaJual" min="0" />
+      </div>
+      <div class="edit-btns">
+        <button class="btn-cancel" onclick="closeEdit()"
+          style="flex:1;padding:10px;border:1px solid var(--border);border-radius:9px;background:none;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;">Batal</button>
+        <button class="btn-edit-save" onclick="saveEdit()">Simpan</button>
+        <button class="btn-edit-del" onclick="hapusDariEdit()">🗑️</button>
+      </div>
+    </div>
+  </div>
 
-  function getData() {
-    try { return JSON.parse(localStorage.getItem(KEY)) || []; }
-    catch { return []; }
-  }
-  function saveData(d) { localStorage.setItem(KEY, JSON.stringify(d)); }
-  function fmt(n) { return 'Rp ' + Math.abs(n).toLocaleString('id-ID'); }
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2500);
-  }
+  <script>
+    const KEY = 'warung_stok';
+    let currentFilter = 'semua';
+    let deleteId = null;
+    let stokId = null;
+    let stokMode = 'tambah'; // 'tambah' | 'kurang'
 
-  function getStatus(item) {
-    const s = item.stok || 0;
-    const m = item.minimum || 5;
-    if (s === 0)    return 'habis';
-    if (s <= m)     return 'tipis';
-    return 'aman';
-  }
-
-  function setFilter(val, el) {
-    currentFilter = val;
-    document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
-    el.classList.add('active');
-    renderData();
-  }
-
-  // ── Add ──
-  function addData() {
-    const nama  = document.getElementById('inpNama').value.trim();
-    const stok  = parseInt(document.getElementById('inpStok').value) || 0;
-    const kat   = document.getElementById('inpKat').value;
-    const sat   = document.getElementById('inpSatuan').value;
-    const min   = parseInt(document.getElementById('inpMin').value) || 5;
-    const hBeli = parseInt(document.getElementById('inpHargaBeli').value) || 0;
-    const hJual = parseInt(document.getElementById('inpHargaJual').value) || 0;
-
-    if (!nama) { showToast('⚠️ Nama barang wajib diisi'); return; }
-
-    const data = getData();
-    // cek duplikat nama
-    if (data.some(d => d.nama.toLowerCase() === nama.toLowerCase())) {
-      showToast('⚠️ Barang dengan nama ini sudah ada'); return;
+    function getData() {
+      try { return JSON.parse(localStorage.getItem(KEY)) || []; }
+      catch { return []; }
+    }
+    function saveData(d) { localStorage.setItem(KEY, JSON.stringify(d)); }
+    function fmt(n) { return 'Rp ' + Math.abs(n).toLocaleString('id-ID'); }
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
     }
 
-    data.unshift({
-      id: Date.now(), nama, stok, kategori: kat,
-      satuan: sat, minimum: min,
-      hargaBeli: hBeli, hargaJual: hJual
-    });
-    saveData(data);
-
-    document.getElementById('inpNama').value = '';
-    document.getElementById('inpStok').value = '';
-    document.getElementById('inpMin').value  = '';
-    document.getElementById('inpHargaBeli').value = '';
-    document.getElementById('inpHargaJual').value = '';
-
-    showToast('✅ Barang berhasil ditambahkan!');
-    renderData();
-    updateSummary();
-    checkAlert();
-  }
-
-  // ── Modal Update Stok ──
-  function openTambah(id) {
-    const item = getData().find(d => d.id === id);
-    if (!item) return;
-    stokId   = id;
-    stokMode = 'tambah';
-    document.getElementById('stokModalTitle').textContent = '📦 Tambah Stok';
-    document.getElementById('stokModalSub').textContent   = item.nama + ' · Stok saat ini: ' + item.stok + ' ' + item.satuan;
-    document.getElementById('inpJmlStok').value     = '';
-    document.getElementById('inpCatatanStok').value = '';
-    document.getElementById('modalStok').classList.add('open');
-  }
-  function openKurang(id) {
-    const item = getData().find(d => d.id === id);
-    if (!item) return;
-    if (item.stok <= 0) { showToast('⚠️ Stok sudah habis'); return; }
-    stokId   = id;
-    stokMode = 'kurang';
-    document.getElementById('stokModalTitle').textContent = '📤 Kurangi Stok';
-    document.getElementById('stokModalSub').textContent   = item.nama + ' · Stok saat ini: ' + item.stok + ' ' + item.satuan;
-    document.getElementById('inpJmlStok').value     = '';
-    document.getElementById('inpCatatanStok').value = '';
-    document.getElementById('modalStok').classList.add('open');
-  }
-  function closeModalStok() {
-    document.getElementById('modalStok').classList.remove('open');
-    stokId = null;
-  }
-  function prosessStok() {
-    const jml = parseInt(document.getElementById('inpJmlStok').value);
-    if (!jml || jml <= 0) { showToast('⚠️ Masukkan jumlah yang valid'); return; }
-
-    const data = getData();
-    const item = data.find(d => d.id === stokId);
-    if (!item) return;
-
-    if (stokMode === 'tambah') {
-      item.stok += jml;
-      showToast('✅ Stok bertambah ' + jml + ' ' + item.satuan);
-    } else {
-      if (jml > item.stok) { showToast('⚠️ Jumlah melebihi stok tersedia (' + item.stok + ')'); return; }
-      item.stok -= jml;
-      showToast('📤 Stok berkurang ' + jml + ' ' + item.satuan);
+    function getStatus(item) {
+      const s = item.stok || 0;
+      const m = item.minimum || 5;
+      if (s === 0) return 'habis';
+      if (s <= m) return 'tipis';
+      return 'aman';
     }
 
-    saveData(data);
-    closeModalStok();
-    renderData();
-    updateSummary();
-    checkAlert();
-  }
-
-  // ── Modal Edit ──
-  function openEdit(id) {
-    const item = getData().find(d => d.id === id);
-    if (!item) return;
-    document.getElementById('editId').value        = id;
-    document.getElementById('editNama').value      = item.nama;
-    document.getElementById('editKat').value       = item.kategori;
-    document.getElementById('editStok').value      = item.stok;
-    document.getElementById('editSatuan').value    = item.satuan;
-    document.getElementById('editMin').value       = item.minimum || 5;
-    document.getElementById('editHargaBeli').value = item.hargaBeli || 0;
-    document.getElementById('editHargaJual').value = item.hargaJual || 0;
-    document.getElementById('modalEdit').classList.add('open');
-  }
-  function closeEdit() {
-    document.getElementById('modalEdit').classList.remove('open');
-  }
-  function saveEdit() {
-    const id    = parseInt(document.getElementById('editId').value);
-    const nama  = document.getElementById('editNama').value.trim();
-    if (!nama) { showToast('⚠️ Nama barang wajib diisi'); return; }
-
-    const data  = getData();
-    const item  = data.find(d => d.id === id);
-    if (!item) return;
-
-    item.nama       = nama;
-    item.kategori   = document.getElementById('editKat').value;
-    item.stok       = parseInt(document.getElementById('editStok').value) || 0;
-    item.satuan     = document.getElementById('editSatuan').value;
-    item.minimum    = parseInt(document.getElementById('editMin').value) || 5;
-    item.hargaBeli  = parseInt(document.getElementById('editHargaBeli').value) || 0;
-    item.hargaJual  = parseInt(document.getElementById('editHargaJual').value) || 0;
-
-    saveData(data);
-    closeEdit();
-    showToast('✅ Data barang diperbarui!');
-    renderData();
-    updateSummary();
-    checkAlert();
-  }
-  function hapusDariEdit() {
-    const id = parseInt(document.getElementById('editId').value);
-    closeEdit();
-    deleteId = id;
-    document.getElementById('modalHapus').classList.add('open');
-  }
-
-  // ── Delete ──
-  function deleteData(id) {
-    deleteId = id;
-    document.getElementById('modalHapus').classList.add('open');
-  }
-  function closeHapus() {
-    document.getElementById('modalHapus').classList.remove('open');
-    deleteId = null;
-  }
-  function confirmHapus() {
-    if (deleteId === null) return;
-    saveData(getData().filter(d => d.id !== deleteId));
-    closeHapus();
-    showToast('🗑️ Barang dihapus');
-    renderData();
-    updateSummary();
-    checkAlert();
-  }
-
-  // ── Render ──
-  const katIcon = { 'Sembako':'🌾','Minuman':'🥤','Snack':'🍪','Bumbu':'🧄','Kebersihan':'🧹','Lainnya':'📌' };
-
-  function renderData() {
-    const data   = getData();
-    const search = document.getElementById('searchInput').value.toLowerCase();
-
-    let filtered = data;
-    if      (currentFilter === 'aman')  filtered = filtered.filter(d => getStatus(d) === 'aman');
-    else if (currentFilter === 'tipis') filtered = filtered.filter(d => getStatus(d) === 'tipis');
-    else if (currentFilter === 'habis') filtered = filtered.filter(d => getStatus(d) === 'habis');
-    else if (!['semua','aman','tipis','habis'].includes(currentFilter)) {
-      filtered = filtered.filter(d => d.kategori === currentFilter);
-    }
-    if (search) filtered = filtered.filter(d => d.nama.toLowerCase().includes(search));
-
-    const grid = document.getElementById('itemGrid');
-    if (filtered.length === 0) {
-      grid.innerHTML = `<div class="empty-state"><div class="ei">📦</div><p>Belum ada barang ditemukan.<br>Tambahkan barang ke daftar stok!</p></div>`;
-      return;
+    function setFilter(val, el) {
+      currentFilter = val;
+      document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      renderData();
     }
 
-    grid.innerHTML = filtered.map(item => {
-      const status   = getStatus(item);
-      const maxStok  = Math.max(item.stok, (item.minimum || 5) * 3, 1);
-      const pct      = Math.round((item.stok / maxStok) * 100);
+    // ── Add ──
+    function addData() {
+      const nama = document.getElementById('inpNama').value.trim();
+      const stok = parseInt(document.getElementById('inpStok').value) || 0;
+      const kat = document.getElementById('inpKat').value;
+      const sat = document.getElementById('inpSatuan').value;
+      const min = parseInt(document.getElementById('inpMin').value) || 5;
+      const hBeli = parseInt(document.getElementById('inpHargaBeli').value) || 0;
+      const hJual = parseInt(document.getElementById('inpHargaJual').value) || 0;
 
-      return `
+      if (!nama) { showToast('⚠️ Nama barang wajib diisi'); return; }
+
+      const data = getData();
+      // cek duplikat nama
+      if (data.some(d => d.nama.toLowerCase() === nama.toLowerCase())) {
+        showToast('⚠️ Barang dengan nama ini sudah ada'); return;
+      }
+
+      data.unshift({
+        id: Date.now(), nama, stok, kategori: kat,
+        satuan: sat, minimum: min,
+        hargaBeli: hBeli, hargaJual: hJual
+      });
+      saveData(data);
+
+      document.getElementById('inpNama').value = '';
+      document.getElementById('inpStok').value = '';
+      document.getElementById('inpMin').value = '';
+      document.getElementById('inpHargaBeli').value = '';
+      document.getElementById('inpHargaJual').value = '';
+
+      showToast('✅ Barang berhasil ditambahkan!');
+      renderData();
+      updateSummary();
+      checkAlert();
+    }
+
+    // ── Modal Update Stok ──
+    function openTambah(id) {
+      const item = getData().find(d => d.id === id);
+      if (!item) return;
+      stokId = id;
+      stokMode = 'tambah';
+      document.getElementById('stokModalTitle').textContent = '📦 Tambah Stok';
+      document.getElementById('stokModalSub').textContent = item.nama + ' · Stok saat ini: ' + item.stok + ' ' + item.satuan;
+      document.getElementById('inpJmlStok').value = '';
+      document.getElementById('inpCatatanStok').value = '';
+      document.getElementById('modalStok').classList.add('open');
+    }
+    function openKurang(id) {
+      const item = getData().find(d => d.id === id);
+      if (!item) return;
+      if (item.stok <= 0) { showToast('⚠️ Stok sudah habis'); return; }
+      stokId = id;
+      stokMode = 'kurang';
+      document.getElementById('stokModalTitle').textContent = '📤 Kurangi Stok';
+      document.getElementById('stokModalSub').textContent = item.nama + ' · Stok saat ini: ' + item.stok + ' ' + item.satuan;
+      document.getElementById('inpJmlStok').value = '';
+      document.getElementById('inpCatatanStok').value = '';
+      document.getElementById('modalStok').classList.add('open');
+    }
+    function closeModalStok() {
+      document.getElementById('modalStok').classList.remove('open');
+      stokId = null;
+    }
+    function prosessStok() {
+      const jml = parseInt(document.getElementById('inpJmlStok').value);
+      if (!jml || jml <= 0) { showToast('⚠️ Masukkan jumlah yang valid'); return; }
+
+      const data = getData();
+      const item = data.find(d => d.id === stokId);
+      if (!item) return;
+
+      if (stokMode === 'tambah') {
+        item.stok += jml;
+        showToast('✅ Stok bertambah ' + jml + ' ' + item.satuan);
+      } else {
+        if (jml > item.stok) { showToast('⚠️ Jumlah melebihi stok tersedia (' + item.stok + ')'); return; }
+        item.stok -= jml;
+        showToast('📤 Stok berkurang ' + jml + ' ' + item.satuan);
+      }
+
+      saveData(data);
+      closeModalStok();
+      renderData();
+      updateSummary();
+      checkAlert();
+    }
+
+    // ── Modal Edit ──
+    function openEdit(id) {
+      const item = getData().find(d => d.id === id);
+      if (!item) return;
+      document.getElementById('editId').value = id;
+      document.getElementById('editNama').value = item.nama;
+      document.getElementById('editKat').value = item.kategori;
+      document.getElementById('editStok').value = item.stok;
+      document.getElementById('editSatuan').value = item.satuan;
+      document.getElementById('editMin').value = item.minimum || 5;
+      document.getElementById('editHargaBeli').value = item.hargaBeli || 0;
+      document.getElementById('editHargaJual').value = item.hargaJual || 0;
+      document.getElementById('modalEdit').classList.add('open');
+    }
+    function closeEdit() {
+      document.getElementById('modalEdit').classList.remove('open');
+    }
+    function saveEdit() {
+      const id = parseInt(document.getElementById('editId').value);
+      const nama = document.getElementById('editNama').value.trim();
+      if (!nama) { showToast('⚠️ Nama barang wajib diisi'); return; }
+
+      const data = getData();
+      const item = data.find(d => d.id === id);
+      if (!item) return;
+
+      item.nama = nama;
+      item.kategori = document.getElementById('editKat').value;
+      item.stok = parseInt(document.getElementById('editStok').value) || 0;
+      item.satuan = document.getElementById('editSatuan').value;
+      item.minimum = parseInt(document.getElementById('editMin').value) || 5;
+      item.hargaBeli = parseInt(document.getElementById('editHargaBeli').value) || 0;
+      item.hargaJual = parseInt(document.getElementById('editHargaJual').value) || 0;
+
+      saveData(data);
+      closeEdit();
+      showToast('✅ Data barang diperbarui!');
+      renderData();
+      updateSummary();
+      checkAlert();
+    }
+    function hapusDariEdit() {
+      const id = parseInt(document.getElementById('editId').value);
+      closeEdit();
+      deleteId = id;
+      document.getElementById('modalHapus').classList.add('open');
+    }
+
+    // ── Delete ──
+    function deleteData(id) {
+      deleteId = id;
+      document.getElementById('modalHapus').classList.add('open');
+    }
+    function closeHapus() {
+      document.getElementById('modalHapus').classList.remove('open');
+      deleteId = null;
+    }
+    function confirmHapus() {
+      if (deleteId === null) return;
+      saveData(getData().filter(d => d.id !== deleteId));
+      closeHapus();
+      showToast('🗑️ Barang dihapus');
+      renderData();
+      updateSummary();
+      checkAlert();
+    }
+
+    // ── Render ──
+    const katIcon = { 'Sembako': '🌾', 'Minuman': '🥤', 'Snack': '🍪', 'Bumbu': '🧄', 'Kebersihan': '🧹', 'Lainnya': '📌' };
+
+    function renderData() {
+      const data = getData();
+      const search = document.getElementById('searchInput').value.toLowerCase();
+
+      let filtered = data;
+      if (currentFilter === 'aman') filtered = filtered.filter(d => getStatus(d) === 'aman');
+      else if (currentFilter === 'tipis') filtered = filtered.filter(d => getStatus(d) === 'tipis');
+      else if (currentFilter === 'habis') filtered = filtered.filter(d => getStatus(d) === 'habis');
+      else if (!['semua', 'aman', 'tipis', 'habis'].includes(currentFilter)) {
+        filtered = filtered.filter(d => d.kategori === currentFilter);
+      }
+      if (search) filtered = filtered.filter(d => d.nama.toLowerCase().includes(search));
+
+      const grid = document.getElementById('itemGrid');
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="empty-state"><div class="ei">📦</div><p>Belum ada barang ditemukan.<br>Tambahkan barang ke daftar stok!</p></div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => {
+        const status = getStatus(item);
+        const maxStok = Math.max(item.stok, (item.minimum || 5) * 3, 1);
+        const pct = Math.round((item.stok / maxStok) * 100);
+
+        return `
         <div class="stok-card ${status}">
           <div class="sc-top">
             <div class="sc-kategori">${katIcon[item.kategori] || '📌'} ${item.kategori}</div>
@@ -672,7 +1344,7 @@
               <span>${pct}%</span>
             </div>
             <div class="sc-prog-track">
-              <div class="sc-prog-fill fill-${status}" style="width:${Math.min(pct,100)}%"></div>
+              <div class="sc-prog-fill fill-${status}" style="width:${Math.min(pct, 100)}%"></div>
             </div>
           </div>
 
@@ -695,54 +1367,55 @@
             </button>
           </div>
         </div>`;
-    }).join('');
-  }
-
-  // ── Summary ──
-  function updateSummary() {
-    const data = getData();
-    const aman  = data.filter(d => getStatus(d) === 'aman').length;
-    const tipis = data.filter(d => getStatus(d) === 'tipis').length;
-    const habis = data.filter(d => getStatus(d) === 'habis').length;
-    document.getElementById('sumTotal').textContent = data.length;
-    document.getElementById('sumAman').textContent  = aman;
-    document.getElementById('sumTipis').textContent = tipis;
-    document.getElementById('sumHabis').textContent = habis;
-  }
-
-  // ── Alert stok menipis ──
-  function checkAlert() {
-    const data    = getData();
-    const masalah = data.filter(d => getStatus(d) !== 'aman');
-    const banner  = document.getElementById('alertBanner');
-    const list    = document.getElementById('alertList');
-
-    if (masalah.length === 0) {
-      banner.classList.remove('show');
-      return;
+      }).join('');
     }
 
-    banner.classList.add('show');
-    list.innerHTML = masalah.map(d => {
-      const s = getStatus(d);
-      return `${s === 'habis' ? '🚨' : '⚠️'} <strong>${d.nama}</strong> — ${s === 'habis' ? 'Stok habis!' : 'Sisa ' + d.stok + ' ' + d.satuan + ' (min. ' + d.minimum + ')'}`;
-    }).join('<br>');
-  }
+    // ── Summary ──
+    function updateSummary() {
+      const data = getData();
+      const aman = data.filter(d => getStatus(d) === 'aman').length;
+      const tipis = data.filter(d => getStatus(d) === 'tipis').length;
+      const habis = data.filter(d => getStatus(d) === 'habis').length;
+      document.getElementById('sumTotal').textContent = data.length;
+      document.getElementById('sumAman').textContent = aman;
+      document.getElementById('sumTipis').textContent = tipis;
+      document.getElementById('sumHabis').textContent = habis;
+    }
 
-  // Close modals on overlay click
-  ['modalHapus','modalStok','modalEdit'].forEach(id => {
-    document.getElementById(id).addEventListener('click', function(e) {
-      if (e.target === this) {
-        if (id === 'modalHapus') closeHapus();
-        else if (id === 'modalStok') closeModalStok();
-        else if (id === 'modalEdit') closeEdit();
+    // ── Alert stok menipis ──
+    function checkAlert() {
+      const data = getData();
+      const masalah = data.filter(d => getStatus(d) !== 'aman');
+      const banner = document.getElementById('alertBanner');
+      const list = document.getElementById('alertList');
+
+      if (masalah.length === 0) {
+        banner.classList.remove('show');
+        return;
       }
-    });
-  });
 
-  renderData();
-  updateSummary();
-  checkAlert();
-</script>
+      banner.classList.add('show');
+      list.innerHTML = masalah.map(d => {
+        const s = getStatus(d);
+        return `${s === 'habis' ? '🚨' : '⚠️'} <strong>${d.nama}</strong> — ${s === 'habis' ? 'Stok habis!' : 'Sisa ' + d.stok + ' ' + d.satuan + ' (min. ' + d.minimum + ')'}`;
+      }).join('<br>');
+    }
+
+    // Close modals on overlay click
+    ['modalHapus', 'modalStok', 'modalEdit'].forEach(id => {
+      document.getElementById(id).addEventListener('click', function (e) {
+        if (e.target === this) {
+          if (id === 'modalHapus') closeHapus();
+          else if (id === 'modalStok') closeModalStok();
+          else if (id === 'modalEdit') closeEdit();
+        }
+      });
+    });
+
+    renderData();
+    updateSummary();
+    checkAlert();
+  </script>
 </body>
+
 </html>
