@@ -51,13 +51,16 @@
     }
 
     .brand-icon {
-      width: 34px;
-      height: 34px;
-      background: rgba(255, 255, 255, .18);
       border-radius: 8px;
       display: grid;
       place-items: center;
       font-size: 18px;
+    }
+
+    .brand-icon img {
+      width: 74px; aspect-ratio: 1/1;
+      object-fit: contain;
+
     }
 
     .brand-name {
@@ -878,7 +881,9 @@
   <header class="header">
     <div class="header-inner">
       <div class="brand">
-        <div class="brand-icon">🏪</div>
+        <div class="brand-icon">
+          <img src="icons/WaroengKita.png" alt="" srcset="">
+        </div>
         <span class="brand-name">Warung Pintar</span>
       </div>
       <span class="page-title">📦 Stok Barang</span>
