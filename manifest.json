@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "Aplikasi PWA Demo",
-  "short_name": "PWA Demo",
-  "description": "Aplikasi PWA responsif untuk demonstrasi template dasar Progressive Web App dengan dukungan offline dan installable.",
+  "name": "Aplikasi WaroengPintar",
+  "short_name": "WaroengPintar",
+  "description": "Aplikasi Kalkulator responsif untuk memenuhi kebutuhan akuntansi warung.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
