@@ -12,13 +12,13 @@
   "lang": "id",
   "icons": [
     {
-      "src": "icons/icon-1024x1024.png",
-      "sizes": "1024x1024",
+      "src": "icons/launchericon-512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/icon-512x512.png",
+      "src": "icons/launchericon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -45,8 +45,8 @@
       "url": "./index.html",
       "icons": [
         {
-          "src": "./icons/icon-1024x1024.png",
-          "sizes": "1024x1024"
+          "src": "./icons/launchericon-512x512.png",
+          "sizes": "512x512"
         }
       ]
     }
