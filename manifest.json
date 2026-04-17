@@ -1,6 +1,6 @@
 {
   "id": "./",
-  "name": "PWA Template Responsif",
+  "name": "Aplikasi PWA Demo",
   "short_name": "PWA Demo",
   "description": "Aplikasi PWA responsif untuk demonstrasi template dasar Progressive Web App dengan dukungan offline dan installable.",
   "start_url": "./index.html",
