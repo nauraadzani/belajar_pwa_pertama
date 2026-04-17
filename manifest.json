@@ -12,8 +12,8 @@
   "lang": "id",
   "icons": [
     {
-      "src": "icons/icon-192x192.png",
-      "sizes": "192x192",
+      "src": "icons/icon-1024x1024.png",
+      "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any maskable"
     },
@@ -45,8 +45,8 @@
       "url": "./index.html",
       "icons": [
         {
-          "src": "icons/icon-192x192.png",
-          "sizes": "192x192"
+          "src": "./icons/icon-1024x1024.png",
+          "sizes": "1024x1024"
         }
       ]
     }
