@@ -6,7 +6,7 @@
         }
 
         :root {
-            --primary: #6366f1;
+            --primary: #601515;
             --primary-dark: #4f46e5;
             --primary-light: #818cf8;
             --bg-dark: #ffffff;
@@ -70,9 +70,12 @@
             box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
         }
 
+
         h1 {
             font-size: 24px;
             font-weight: 700;
+            color:#601515;
+;
         }
 
         .stats {
