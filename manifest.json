@@ -9,7 +9,6 @@
   "display": "standalone",
   "background_color": "#601515",
   "theme_color": "#601515",
-  "iarc_rating_id": "e.g.12345678-90ab-cdef-1234-567890abcdef",
   "orientation": "portrait",
   "lang": "id",
   "icons": [
