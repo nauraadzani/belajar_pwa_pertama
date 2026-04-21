@@ -13,16 +13,10 @@
   "lang": "id",
   "icons": [
     {
-      "src": "icons/launchericon-512x512.png",
+      "src": "/belajar_pwa_pertama/icons/launchericon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icons/launchericon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     }
   ],
   "screenshots": [
@@ -30,20 +24,21 @@
       "src": "icons/screenshot1.png",
       "sizes": "1442x3090",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "wide"
     },
     {
       "src": "icons/screenshot2.png",
       "sizes": "390x844",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "wide"
+      
     }
   ],
   "shortcuts": [
   {
     "name": "Halaman Utama",
     "short_name": "Home",
-    "url": "/index.html",
+    "url": "/belajar_pwa_pertama/index.html",
     "icons": [
       {
         "src": "/icons/launchericon-512x512.png",
@@ -55,7 +50,7 @@
   {
     "name": "Pemasukan",
     "short_name": "Pemasukan",
-    "url": "/pemasukan.html",
+    "url": "/belajar_pwa_pertama/pemasukan.html",
     "icons": [
       {
         "src": "/icons/launchericon-512x512.png",
@@ -67,7 +62,7 @@
   {
     "name": "Pengeluaran",
     "short_name": "Pengeluaran",
-    "url": "/pengeluaran.html",
+    "url": "/belajar_pwa_pertama/pengeluaran.html",
     "icons": [
       {
         "src": "/icons/launchericon-512x512.png",
@@ -79,7 +74,7 @@
   {
     "name": "Hutang",
     "short_name": "Hutang",
-    "url": "/hutang.html",
+    "url": "/belajar_pwa_pertama/hutang.html",
     "icons": [
       {
         "src": "/icons/launchericon-512x512.png",
@@ -91,7 +86,7 @@
   {
     "name": "Stok Barang",
     "short_name": "Stok Barang",
-    "url": "/stok.html",
+    "url": "/belajar_pwa_pertama/stok.html",
     "icons": [
       {
         "src": "/icons/launchericon-512x512.png",
