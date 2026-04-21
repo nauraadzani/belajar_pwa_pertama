@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#1a3a2a" />
+  <meta name="theme-color" content="#601515" />
   <title>WaroengPintar - Pengeluaran</title>
   <style>
     @import url(style.css);
@@ -600,7 +600,6 @@
     }
   </style>
 </head>
-
 <body>
 
   <header class="header">
@@ -611,7 +610,7 @@
         </div>
         <span class="brand-name">WaroengPintar</span>
       </div>
-      <span class="page-title">🛒 Pengeluaran</span>
+      <span class="page-title">Pengeluaran</span>
     </div>
   </header>
 
@@ -632,17 +631,17 @@
       <div class="section-label">Ringkasan Pengeluaran</div>
       <div class="summary-strip">
         <div class="sum-card">
-          <div class="sc-label">📅 Hari Ini</div>
+          <div class="sc-label">Hari Ini</div>
           <div class="sc-val" id="sumHari">Rp 0</div>
           <div class="sc-sub" id="cntHari">0 trx</div>
         </div>
         <div class="sum-card">
-          <div class="sc-label">📆 Bulan Ini</div>
+          <div class="sc-label">Bulan Ini</div>
           <div class="sc-val" id="sumBulan">Rp 0</div>
           <div class="sc-sub" id="cntBulan">0 trx</div>
         </div>
         <div class="sum-card">
-          <div class="sc-label">📊 Total</div>
+          <div class="sc-label">Total</div>
           <div class="sc-val" id="sumTotal">Rp 0</div>
           <div class="sc-sub" id="cntTotal">0 trx</div>
         </div>
@@ -652,7 +651,7 @@
     <!-- Breakdown per kategori -->
     <section>
       <div class="kat-breakdown">
-        <h3>📊 Pengeluaran per Kategori</h3>
+        <h3>Pengeluaran per Kategori</h3>
         <div id="katBreakdown">
           <p style="font-size:.8rem;color:var(--muted);">Belum ada data</p>
         </div>
@@ -662,7 +661,7 @@
     <!-- Form Tambah -->
     <section>
       <div class="form-card">
-        <h2>➕ Tambah Pengeluaran</h2>
+        <h2>Tambah Pengeluaran</h2>
         <div class="form-row">
           <div class="field">
             <label>KETERANGAN *</label>
@@ -677,11 +676,11 @@
           <div class="field">
             <label>KATEGORI</label>
             <select id="inpKat">
-              <option value="Belanja Stok">🛍️ Belanja Stok</option>
-              <option value="Operasional">⚙️ Operasional</option>
-              <option value="Listrik & Air">💡 Listrik & Air</option>
-              <option value="Gaji">👤 Gaji</option>
-              <option value="Lainnya">📌 Lainnya</option>
+              <option value="Belanja Stok">Belanja Stok</option>
+              <option value="Operasional">Operasional</option>
+              <option value="Listrik & Air">Listrik & Air</option>
+              <option value="Gaji">Gaji</option>
+              <option value="Lainnya">Lainnya</option>
             </select>
           </div>
           <div class="field">
@@ -696,7 +695,7 @@
           </div>
         </div>
         <button class="btn-submit" onclick="addData()">
-          <span>💾</span> Simpan Pengeluaran
+          Simpan Pengeluaran
         </button>
       </div>
     </section>
@@ -705,15 +704,15 @@
     <section>
       <div class="section-label">Riwayat Pengeluaran</div>
       <div class="toolbar">
-        <input type="text" id="searchInput" placeholder="🔍 Cari keterangan..." oninput="renderData()" />
+        <input type="text" id="searchInput" placeholder="Cari keterangan..." oninput="renderData()" />
       </div>
       <div class="filter-tabs">
         <button class="ftab active" onclick="setFilter('semua', this)">Semua</button>
-        <button class="ftab" onclick="setFilter('Belanja Stok', this)">🛍️ Stok</button>
-        <button class="ftab" onclick="setFilter('Operasional', this)">⚙️ Operasional</button>
-        <button class="ftab" onclick="setFilter('Listrik & Air', this)">💡 Listrik</button>
-        <button class="ftab" onclick="setFilter('Gaji', this)">👤 Gaji</button>
-        <button class="ftab" onclick="setFilter('Lainnya', this)">📌 Lainnya</button>
+        <button class="ftab" onclick="setFilter('Belanja Stok', this)">Stok</button>
+        <button class="ftab" onclick="setFilter('Operasional', this)">Operasional</button>
+        <button class="ftab" onclick="setFilter('Listrik & Air', this)">Listrik</button>
+        <button class="ftab" onclick="setFilter('Gaji', this)">Gaji</button>
+        <button class="ftab" onclick="setFilter('Lainnya', this)">Lainnya</button>
       </div>
       <div class="item-list" id="itemList"></div>
     </section>

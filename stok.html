@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#1a3a2a" />
+  <meta name="theme-color" content="#601515" />
   <title>Warung Pintar - Stok Barang</title>
   <style>
     @import url(style.css);
@@ -347,7 +347,7 @@
     }
 
     .ftab.active {
-      background: var(--page);
+      background: var(--primary);
       color: #fff;
       border-color: var(--page);
     }
@@ -880,7 +880,7 @@
         </div>
         <span class="brand-name">Warung Pintar</span>
       </div>
-      <span class="page-title">📦 Stok Barang</span>
+      <span class="page-title">Stok Barang</span>
     </div>
   </header>
 
@@ -910,22 +910,22 @@
       <div class="section-label">Ringkasan Stok</div>
       <div class="summary-strip">
         <div class="sum-card">
-          <div class="sc-label">📦 Total Barang</div>
+          <div class="sc-label">Total Barang</div>
           <div class="sc-val sc-blue" id="sumTotal">0</div>
           <div class="sc-sub">jenis barang</div>
         </div>
         <div class="sum-card">
-          <div class="sc-label">✅ Stok Aman</div>
+          <div class="sc-label">Stok Aman</div>
           <div class="sc-val sc-green" id="sumAman">0</div>
           <div class="sc-sub">barang</div>
         </div>
         <div class="sum-card">
-          <div class="sc-label">⚠️ Stok Tipis</div>
+          <div class="sc-label">Stok Tipis</div>
           <div class="sc-val sc-warn" id="sumTipis">0</div>
           <div class="sc-sub">barang</div>
         </div>
         <div class="sum-card">
-          <div class="sc-label">🚨 Habis</div>
+          <div class="sc-label">Habis</div>
           <div class="sc-val sc-red" id="sumHabis">0</div>
           <div class="sc-sub">barang</div>
         </div>
@@ -935,7 +935,7 @@
     <!-- Form Tambah -->
     <section>
       <div class="form-card">
-        <h2>➕ Tambah Barang Baru</h2>
+        <h2>Tambah Barang Baru</h2>
         <div class="form-row">
           <div class="field">
             <label>NAMA BARANG *</label>
@@ -944,12 +944,12 @@
           <div class="field">
             <label>KATEGORI</label>
             <select id="inpKat">
-              <option value="Sembako">🌾 Sembako</option>
-              <option value="Minuman">🥤 Minuman</option>
-              <option value="Snack">🍪 Snack</option>
-              <option value="Bumbu">🧄 Bumbu</option>
-              <option value="Kebersihan">🧹 Kebersihan</option>
-              <option value="Lainnya">📌 Lainnya</option>
+              <option value="Sembako">Sembako</option>
+              <option value="Minuman">Minuman</option>
+              <option value="Snack">Snack</option>
+              <option value="Bumbu">Bumbu</option>
+              <option value="Kebersihan">Kebersihan</option>
+              <option value="Lainnya">Lainnya</option>
             </select>
           </div>
         </div>
@@ -985,7 +985,7 @@
           </div>
         </div>
         <button class="btn-submit" onclick="addData()">
-          <span>💾</span> Simpan Barang
+          Simpan Barang
         </button>
       </div>
     </section>
@@ -998,12 +998,12 @@
       </div>
       <div class="filter-tabs">
         <button class="ftab active" onclick="setFilter('semua', this)">Semua</button>
-        <button class="ftab" onclick="setFilter('aman', this)">✅ Aman</button>
-        <button class="ftab" onclick="setFilter('tipis', this)">⚠️ Tipis</button>
-        <button class="ftab" onclick="setFilter('habis', this)">🚨 Habis</button>
-        <button class="ftab" onclick="setFilter('Sembako', this)">🌾 Sembako</button>
-        <button class="ftab" onclick="setFilter('Minuman', this)">🥤 Minuman</button>
-        <button class="ftab" onclick="setFilter('Snack', this)">🍪 Snack</button>
+        <button class="ftab" onclick="setFilter('aman', this)">Aman</button>
+        <button class="ftab" onclick="setFilter('tipis', this)">Tipis</button>
+        <button class="ftab" onclick="setFilter('habis', this)">Habis</button>
+        <button class="ftab" onclick="setFilter('Sembako', this)">Sembako</button>
+        <button class="ftab" onclick="setFilter('Minuman', this)">Minuman</button>
+        <button class="ftab" onclick="setFilter('Snack', this)">Snack</button>
       </div>
       <div class="item-grid" id="itemGrid"></div>
     </section>

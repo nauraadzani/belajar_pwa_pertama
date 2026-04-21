@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#1a3a2a" />
+  <meta name="theme-color" content="#601515" />
   <title>WaroengPintar - Pengeluaran</title>
   <style>
     @import url(style.css);
@@ -160,7 +160,7 @@
     .field textarea {
       width: 100%;
       padding: 9px 11px;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 9px;
       font-size: .85rem;
       font-family: inherit;
@@ -169,6 +169,12 @@
       outline: none;
       transition: border-color .15s;
     }
+
+    .field textarea {
+      resize: none;
+      height: 200px;
+    }
+
     .field input:focus,
     .field select:focus,
     .field textarea:focus {
@@ -180,7 +186,7 @@
     .btn-submit {
       width: 100%;
       padding: 11px;
-      background: var(--accent);
+      background: var(--primary);
       color: #fff;
       border: none;
       border-radius: 10px;
@@ -234,7 +240,7 @@
       transition: all .15s;
     }
     .ftab.active {
-      background: var(--accent);
+      background: var(--primary);
       color: #fff;
       border-color: var(--accent);
     }
@@ -425,7 +431,7 @@
         </div>
       <span class="brand-name">WaroengPintar</span>
     </div>
-    <span class="page-title">💰 Pemasukan</span>
+    <span class="page-title">Pemasukan</span>
   </div>
 </header>
 
@@ -446,17 +452,17 @@
     <div class="section-label">Ringkasan Pemasukan</div>
     <div class="summary-strip">
       <div class="sum-card">
-        <div class="sc-label">📅 Hari Ini</div>
+        <div class="sc-label">Hari Ini</div>
         <div class="sc-val" id="sumHari">Rp 0</div>
         <div class="sc-sub" id="cntHari">0 trx</div>
       </div>
       <div class="sum-card">
-        <div class="sc-label">📆 Bulan Ini</div>
+        <div class="sc-label">Bulan Ini</div>
         <div class="sc-val" id="sumBulan">Rp 0</div>
         <div class="sc-sub" id="cntBulan">0 trx</div>
       </div>
       <div class="sum-card">
-        <div class="sc-label">📊 Total</div>
+        <div class="sc-label">Total</div>
         <div class="sc-val" id="sumTotal">Rp 0</div>
         <div class="sc-sub" id="cntTotal">0 trx</div>
       </div>
@@ -466,7 +472,7 @@
   <!-- Form Tambah -->
   <section>
     <div class="form-card">
-      <h2>➕ Tambah Pemasukan</h2>
+      <h2>Tambah Pemasukan</h2>
       <div class="form-row">
         <div class="field">
           <label>KETERANGAN *</label>
@@ -481,9 +487,9 @@
         <div class="field">
           <label>KATEGORI</label>
           <select id="inpKat">
-            <option value="Penjualan">🛍️ Penjualan</option>
-            <option value="Modal">💼 Modal</option>
-            <option value="Lainnya">📌 Lainnya</option>
+            <option value="Penjualan">Penjualan</option>
+            <option value="Modal">Modal</option>
+            <option value="Lainnya">Lainnya</option>
           </select>
         </div>
         <div class="field">
@@ -498,7 +504,7 @@
         </div>
       </div>
       <button class="btn-submit" onclick="addData()">
-        <span>💾</span> Simpan Pemasukan
+        Simpan Pemasukan
       </button>
     </div>
   </section>
@@ -508,14 +514,14 @@
     <div class="section-label">Riwayat Pemasukan</div>
 
     <div class="toolbar">
-      <input type="text" id="searchInput" placeholder="🔍 Cari keterangan..." oninput="renderData()" />
+      <input type="text" id="searchInput" placeholder="Cari keterangan..." oninput="renderData()" />
     </div>
 
     <div class="filter-tabs">
       <button class="ftab active" onclick="setFilter('semua', this)">Semua</button>
-      <button class="ftab" onclick="setFilter('Penjualan', this)">🛍️ Penjualan</button>
-      <button class="ftab" onclick="setFilter('Modal', this)">💼 Modal</button>
-      <button class="ftab" onclick="setFilter('Lainnya', this)">📌 Lainnya</button>
+      <button class="ftab" onclick="setFilter('Penjualan', this)">Penjualan</button>
+      <button class="ftab" onclick="setFilter('Modal', this)">Modal</button>
+      <button class="ftab" onclick="setFilter('Lainnya', this)">Lainnya</button>
     </div>
 
     <div class="item-list" id="itemList"></div>

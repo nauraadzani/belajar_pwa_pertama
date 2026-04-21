@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#1a3a2a" />
+  <meta name="theme-color" content="#601515" />
   <title>WaroengPintar - Pengeluaran</title>
   <style>
     @import url(style.css);
@@ -824,7 +824,7 @@
         </div>
         <span class="brand-name">WaroengPintar</span>
       </div>
-      <span class="page-title">📋 Hutang Pelanggan</span>
+      <span class="page-title">Hutang Pelanggan</span>
     </div>
   </header>
 
@@ -845,17 +845,17 @@
       <div class="section-label">Ringkasan Hutang</div>
       <div class="summary-strip">
         <div class="sum-card warn">
-          <div class="sc-label">⏳ Belum Lunas</div>
+          <div class="sc-label">Belum Lunas</div>
           <div class="sc-val sc-warn" id="sumBelum">Rp 0</div>
           <div class="sc-sub" id="cntBelum">0 pelanggan</div>
         </div>
         <div class="sum-card">
-          <div class="sc-label">✅ Sudah Lunas</div>
+          <div class="sc-label">Sudah Lunas</div>
           <div class="sc-val sc-green" id="sumLunas">Rp 0</div>
           <div class="sc-sub" id="cntLunas">0 pelanggan</div>
         </div>
         <div class="sum-card">
-          <div class="sc-label">📊 Total Hutang</div>
+          <div class="sc-label">Total Hutang</div>
           <div class="sc-val sc-red" id="sumTotal">Rp 0</div>
           <div class="sc-sub" id="cntTotal">0 total</div>
         </div>
@@ -865,7 +865,7 @@
     <!-- Form Tambah -->
     <section>
       <div class="form-card">
-        <h2>➕ Tambah Hutang Pelanggan</h2>
+        <h2>Tambah Hutang Pelanggan</h2>
         <div class="form-row">
           <div class="field">
             <label>NAMA PELANGGAN *</label>
@@ -887,7 +887,7 @@
           </div>
         </div>
         <button class="btn-submit" onclick="addData()">
-          <span>💾</span> Simpan Hutang
+          Simpan Hutang
         </button>
       </div>
     </section>
@@ -896,12 +896,12 @@
     <section>
       <div class="section-label">Daftar Hutang</div>
       <div class="toolbar">
-        <input type="text" id="searchInput" placeholder="🔍 Cari nama pelanggan..." oninput="renderData()" />
+        <input type="text" id="searchInput" placeholder="Cari nama pelanggan..." oninput="renderData()" />
       </div>
       <div class="filter-tabs">
         <button class="ftab active" onclick="setFilter('semua', this)">Semua</button>
-        <button class="ftab" onclick="setFilter('belum', this)">⏳ Belum Lunas</button>
-        <button class="ftab" onclick="setFilter('lunas', this)">✅ Lunas</button>
+        <button class="ftab" onclick="setFilter('belum', this)">Belum Lunas</button>
+        <button class="ftab" onclick="setFilter('lunas', this)">Lunas</button>
       </div>
       <div class="item-list" id="itemList"></div>
     </section>
@@ -1164,10 +1164,10 @@
 
           <div class="hc-actions">
             <button class="btn-bayar" onclick="openBayar(${item.id})" ${item.lunas ? 'disabled' : ''}>
-              💳 Bayar
+              Bayar
             </button>
             <button class="btn-lunas" onclick="prosessLunasLangsung(${item.id})" ${item.lunas ? 'disabled' : ''}>
-              ✅ Tandai Lunas
+              Tandai Lunas
             </button>
             <button class="btn-hapus" onclick="deleteData(${item.id})">🗑️</button>
           </div>

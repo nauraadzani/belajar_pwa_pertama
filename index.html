@@ -366,17 +366,17 @@
     <div class="section-label">Ringkasan Keuangan Hari Ini</div>
     <div class="summary-strip">
       <div class="summary-card">
-        <div class="sc-label">💰 Total Pemasukan</div>
+        <div class="sc-label">Total Pemasukan</div>
         <div class="sc-value sc-green" id="totalPemasukan">Rp 0</div>
         <div class="sc-sub" id="jmlPemasukan">0 transaksi</div>
       </div>
       <div class="summary-card">
-        <div class="sc-label">🛒 Total Pengeluaran</div>
+        <div class="sc-label">Total Pengeluaran</div>
         <div class="sc-value sc-red" id="totalPengeluaran">Rp 0</div>
         <div class="sc-sub" id="jmlPengeluaran">0 transaksi</div>
       </div>
       <div class="summary-card full" id="cardSelisih">
-        <div class="sc-label" id="labelSelisih">⚖️ Laba / Rugi</div>
+        <div class="sc-label" id="labelSelisih">Laba / Rugi</div>
         <div class="sc-value" id="totalSelisih">Rp 0</div>
         <div class="sc-sub" id="descSelisih">Selisih pemasukan dan pengeluaran</div>
       </div>
@@ -466,7 +466,7 @@
 
     const cardEl = document.getElementById('cardSelisih');
     cardEl.className = 'summary-card full ' + (selisih >= 0 ? 'card-laba' : 'card-rugi');
-    document.getElementById('labelSelisih').textContent   = selisih >= 0 ? '✅ Laba' : '⚠️ Rugi';
+    document.getElementById('labelSelisih').textContent   = selisih >= 0 ? 'Laba' : 'Rugi';
     document.getElementById('descSelisih').textContent    = selisih >= 0
       ? 'Warung dalam kondisi untung 🎉'
       : 'Pengeluaran melebihi pemasukan';
