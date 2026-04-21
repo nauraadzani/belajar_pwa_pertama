@@ -1,14 +1,13 @@
 const CACHE_NAME = "pwa-template-v2";
-const OFFLINE_URL = "offline.html";
+const BASE = "/belajar_pwa_pertama";
+const OFFLINE_URL = `${BASE}/offline.html`;
 
-// ✅ FIX 1: Precache semua asset penting saat install
 const PRECACHE_ASSETS = [
-  "/",
-  "/index.html",
-  "/offline.html",
-  "/css/style.css",
-  "/js/app.js",
-  // tambahkan asset lain yang diperlukan
+  `${BASE}/`,
+  `${BASE}/index.html`,
+  `${BASE}/offline.html`,
+  `${BASE}/css/style.css`,
+  `${BASE}/js/app.js`,
 ];
 
 self.addEventListener("install", event => {
