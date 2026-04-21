@@ -11,7 +11,7 @@ const PRECACHE_ASSETS = [
   `${BASE}/stok.html`,
   `${BASE}/offline.html`,
   `${BASE}/style.css`,
-  `${BASE}/icons/icon-512x512.png`,
+  `${BASE}/icons/launchericon-512x512.png`,
 ];
 
 // ─── INSTALL ────────────────────────────────────────────────
