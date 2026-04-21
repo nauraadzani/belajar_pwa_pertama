@@ -3,7 +3,7 @@
   "name": "Aplikasi WaroengPintar",
   "short_name": "WaroengPintar",
   "description": "Aplikasi belajar Progressive Web App sederhana untuk memahami konsep dasar PWA seperti service worker dan manifest.",
-  "categories": ["finance", "productivity", "tools", "utilities"],
+  "categories": ["finance", "productivity", "tools"],
   "start_url": "/belajar_pwa_pertama/index.html",
   "scope": "/belajar_pwa_pertama/",
   "display": "standalone",
@@ -16,84 +16,36 @@
       "src": "icons/launchericon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icons/launchericon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "screenshots": [
     {
       "src": "icons/screenshot1.png",
-      "sizes": "1442x3090",
+      "sizes": "1280x720",
       "type": "image/png",
-      "form_factor": "wide"
+      "form_factor": "narrow"
     },
     {
       "src": "icons/screenshot2.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow"
-      
     }
   ],
   "shortcuts": [
-  {
-    "name": "Halaman Utama",
-    "short_name": "Home",
-    "url": "/belajar_pwa_pertama/index.html",
-    "icons": [
-      {
-        "src": "/icons/launchericon-512x512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  },
-  {
-    "name": "Pemasukan",
-    "short_name": "Pemasukan",
-    "url": "/belajar_pwa_pertama/pemasukan.html",
-    "icons": [
-      {
-        "src": "/icons/launchericon-512x512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  },
-  {
-    "name": "Pengeluaran",
-    "short_name": "Pengeluaran",
-    "url": "/belajar_pwa_pertama/pengeluaran.html",
-    "icons": [
-      {
-        "src": "/icons/launchericon-512x512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  },
-  {
-    "name": "Hutang",
-    "short_name": "Hutang",
-    "url": "/belajar_pwa_pertama/hutang.html",
-    "icons": [
-      {
-        "src": "/icons/launchericon-512x512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  },
-  {
-    "name": "Stok Barang",
-    "short_name": "Stok Barang",
-    "url": "/belajar_pwa_pertama/stok.html",
-    "icons": [
-      {
-        "src": "/icons/launchericon-512x512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  }
-  ]
+    {
+      "name": "Buka Beranda",
+      "short_name": "Home",
+      "url": "./index.html",
+      "icons": [{ "src": "./icons/launchericon-512x512.png", "sizes": "512x512" }]
+    }
+  ],
+
 }
