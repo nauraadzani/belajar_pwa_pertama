@@ -1,4 +1,4 @@
-const CACHE_NAME = "pwa-waroeng-v3";
+const CACHE_NAME = "pwa-waroeng-v4";
 const BASE = "/belajar_pwa_pertama";
 const OFFLINE_URL = `${BASE}/offline.html`;
 
