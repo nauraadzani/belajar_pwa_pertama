@@ -10,7 +10,7 @@ const PRECACHE_ASSETS = [
   `${BASE}/hutang.html`,
   `${BASE}/stok.html`,
   `${BASE}/offline.html`,
-  `${BASE}style.css`,
+  `${BASE}/style.css`,
   `${BASE}/icons/icon-512x512.png`,
 ];
 
