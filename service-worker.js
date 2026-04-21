@@ -5,9 +5,12 @@ const OFFLINE_URL = `${BASE}/offline.html`;
 const PRECACHE_ASSETS = [
   `${BASE}/`,
   `${BASE}/index.html`,
+  `${BASE}/pemasukan.html`,
+  `${BASE}/pengeluaran.html`,
+  `${BASE}/hutang.html`,
+  `${BASE}/stok.html`,
   `${BASE}/offline.html`,
-  `${BASE}/css/style.css`,
-  `${BASE}/js/app.js`,
+  `${BASE}style.css`,
   `${BASE}/icons/icon-512x512.png`,
 ];
 
