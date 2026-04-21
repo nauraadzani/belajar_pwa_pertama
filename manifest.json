@@ -13,7 +13,7 @@
   "lang": "id",
   "icons": [
     {
-      "src": "/belajar_pwa_pertama/icons/launchericon-512x512.png",
+      "src": "icons/launchericon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -30,7 +30,7 @@
       "src": "icons/screenshot2.png",
       "sizes": "390x844",
       "type": "image/png",
-      "form_factor": "wide"
+      "form_factor": "narrow"
       
     }
   ],
