@@ -61,7 +61,7 @@
     }
   ],
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": ["tabbed", "standalone", "minimal-ui"],
   "background_color": "#601515",
   "theme_color": "#601515",
   "orientation": "portrait",
