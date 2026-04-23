@@ -6,6 +6,11 @@
   "categories": ["finance", "productivity", "tools"],
   "start_url": "/belajar_pwa_pertama/index.html",
   "scope": "/belajar_pwa_pertama/",
+  "scope_extensions": [
+    {
+      "origin": "*.github.io"
+    }
+  ],
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "background_color": "#601515",
