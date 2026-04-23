@@ -46,6 +46,7 @@
       "url": "./index.html",
       "icons": [{ "src": "./icons/launchericon-512x512.png", "sizes": "512x512" }]
     }
-  ]
-
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }
