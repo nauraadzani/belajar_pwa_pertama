@@ -22,6 +22,12 @@
   "launch_handler": {
     "client_mode": "auto"
   },
+  "protocol_handlers": [
+    {
+      "protocol": "web+waroeng",
+      "url": "./index.html?action=%s"
+    }
+  ],
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "background_color": "#601515",
