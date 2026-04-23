@@ -62,6 +62,9 @@
   ],
   "display": "standalone",
   "display_override": ["tabbed", "standalone", "minimal-ui"],
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
   "background_color": "#601515",
   "theme_color": "#601515",
   "orientation": "portrait",
