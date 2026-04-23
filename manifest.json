@@ -28,6 +28,15 @@
       "url": "./index.html?action=%s"
     }
   ],
+  "share_target": {
+    "action": "./index.html",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "background_color": "#601515",
