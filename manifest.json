@@ -8,7 +8,7 @@
   "scope": "/belajar_pwa_pertama/",
   "scope_extensions": [
     {
-      "origin": "*.github.io"
+      "origin": "https://*.github.io"
     }
   ],
   "display": "standalone",
