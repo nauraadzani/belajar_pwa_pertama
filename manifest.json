@@ -19,6 +19,9 @@
       }
     }
   ],
+  "launch_handler": {
+    "client_mode": "auto"
+  },
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "background_color": "#601515",
