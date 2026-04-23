@@ -37,6 +37,12 @@
       "sizes": "1442x3090",
       "type": "image/png",
       "form_factor": "narrow"
+    },
+    {
+      "src": "icons/screenshot-wide.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ],
   "shortcuts": [
