@@ -11,6 +11,14 @@
       "origin": "https://*.nauraadzani.github.io"
     }
   ],
+  "file_handlers": [
+    {
+      "action": "./index.html",
+      "accept": {
+        "text/csv": [".csv"]
+      }
+    }
+  ],
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "background_color": "#601515",
