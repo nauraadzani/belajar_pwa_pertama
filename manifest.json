@@ -37,6 +37,29 @@
       "url": "url"
     }
   },
+  "widgets": [
+    {
+      "name": "WaroengPintar Widget",
+      "description": "Widget untuk WaroengPintar",
+      "tag": "waroeng-widget",
+      "ms_ac_template": "widget.json",
+      "data": "widget-data.json",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "icons/screenshot1.png",
+          "sizes": "1442x3090",
+          "label": "Widget Screenshot"
+        }
+      ],
+      "icons": [
+        {
+          "src": "icons/launchericon-512x512.png",
+          "sizes": "512x512"
+        }
+      ]
+    }
+  ],
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "background_color": "#601515",
