@@ -12,6 +12,7 @@
   "theme_color": "#601515",
   "orientation": "portrait",
   "lang": "id",
+  "dir": "ltr",
   "icons": [
     {
       "src": "icons/launchericon-512x512.png",
